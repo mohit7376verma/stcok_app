@@ -7,6 +7,7 @@ import 'package:stock_app/generated/assets.dart';
 import '../../../theme/app_colors.dart';
 import '../../../widgets/image.dart';
 import '../controllers/home_controller.dart';
+import 'chat_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -101,3 +102,5 @@ class HomeView extends GetView<HomeController> {
     }
   }
 }
+
+
