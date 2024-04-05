@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class DashController extends GetxController {
   RxInt currentIndex = 0.obs;
   var isDrawerOpen = false.obs;
 

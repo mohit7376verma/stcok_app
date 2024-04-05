@@ -1,16 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stock_app/app/modules/home/views/home_view.dart';
+import 'package:stock_app/app/modules/home/views/market_view.dart';
+import 'package:stock_app/app/modules/home/views/more_view.dart';
 import 'package:stock_app/app/widgets/common_app_bar.dart';
+import 'package:stock_app/app/widgets/common_text.dart';
 import 'package:stock_app/generated/assets.dart';
 
 import '../../../theme/app_colors.dart';
 import '../../../widgets/image.dart';
-import '../controllers/home_controller.dart';
+import '../controllers/dash_controller.dart';
 import 'chat_view.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+class DashboardView extends GetView<DashController> {
+  const DashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +35,16 @@ class HomeView extends GetView<HomeController> {
             )
           ],
         ),
-        body: const Center(
-          child: Text(
-            'HomeView is working',
-            style: TextStyle(fontSize: 20),
+        body: SafeArea(
+          child: PageView(
+            controller: controller.pageCtrl,
+            onPageChanged: _onPageChanged,
+            physics: const NeverScrollableScrollPhysics(),
+            children: pages,
           ),
         ),
         bottomNavigationBar: _bottomBar(context, scaffoldKey),
-        drawer:
-            Drawer(width: MediaQuery.sizeOf(context).width * .75, backgroundColor: onBackgroundClr, elevation: 0.0, child: const Center(child: Text("DRAWER"))),
+        drawer: Drawer(width: MediaQuery.sizeOf(context).width * .75, backgroundColor: onBackgroundClr, elevation: 0.0, child: const Center(child: MoreView())),
         drawerDragStartBehavior: DragStartBehavior.start,
         drawerEnableOpenDragGesture: true,
         onDrawerChanged: (bool state) {
@@ -55,8 +60,8 @@ class HomeView extends GetView<HomeController> {
       return NavigationBar(
         destinations: [
           navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Home"),
+          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Chat"),
           navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Market"),
-          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "News"),
           navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "More"),
         ],
         onDestinationSelected: (int index) {
@@ -81,13 +86,12 @@ class HomeView extends GetView<HomeController> {
   NavigationDestination navItem(String icon, String activeIcon, String title) {
     if (title.toLowerCase() == "more") {
       return NavigationDestination(
-        icon: Text(title),
+        icon: CommonText.regular(title),
         label: title,
       );
     } else {
       return NavigationDestination(
-        icon: Text(title),
-        selectedIcon: SquareSvgImageFromAsset(title, color: onPrimaryClr, size: 28),
+        icon: CommonText.regular(title),
         label: title,
       );
     }
@@ -103,4 +107,4 @@ class HomeView extends GetView<HomeController> {
   }
 }
 
-
+const pages = [HomeView(), ChatView(), MarketView()];

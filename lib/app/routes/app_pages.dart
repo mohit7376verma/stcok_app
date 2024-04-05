@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
-import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/bindings/dash_binding.dart';
 import '../modules/home/views/dash_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
@@ -21,8 +21,8 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
+      page: () => const DashboardView(),
+      binding: DashBinding(),
     ),
     GetPage(
       name: _Paths.SPLASH,
