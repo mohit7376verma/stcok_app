@@ -12,6 +12,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onBackTap;
   final PreferredSizeWidget? bottom;
   final bool hasBackIcon;
+  final bool titleCentered;
   final List<Widget>? actions;
   final String? leadingIcon;
   final Color? bgColor;
@@ -22,6 +23,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onBackTap,
     this.bottom,
     this.hasBackIcon = true,
+    this.titleCentered = true,
     this.actions,
     this.leadingIcon,
     this.bgColor = primaryClr,
@@ -45,7 +47,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : null,
       title: CommonText.bold(title, size: size ?? 18, color: onPrimaryClr, textAlign: TextAlign.start),
-      centerTitle: true,
+      centerTitle: titleCentered,
       actions: actions,
      scrolledUnderElevation: 0.0,
     );

@@ -18,12 +18,12 @@ class DashboardView extends GetView<DashController> {
 
   @override
   Widget build(BuildContext context) {
-    var scaffoldKey = GlobalObjectKey<ScaffoldState>(ScaffoldState());
+
     return Obx(() {
       return Scaffold(
-        key: scaffoldKey,
+        key: controller.scaffoldKey,
         appBar: CommonAppBar(
-          title: "Home",
+          title: title[controller.currentIndex.value],
           leadingIcon: Assets.imagesIcNotification,
           hasBackIcon: true,
           onBackTap: () {},
@@ -43,7 +43,7 @@ class DashboardView extends GetView<DashController> {
             children: pages,
           ),
         ),
-        bottomNavigationBar: _bottomBar(context, scaffoldKey),
+        bottomNavigationBar: _bottomBar(context, controller.scaffoldKey),
         drawer: Drawer(width: MediaQuery.sizeOf(context).width * .75, backgroundColor: onBackgroundClr, elevation: 0.0, child: const Center(child: MoreView())),
         drawerDragStartBehavior: DragStartBehavior.start,
         drawerEnableOpenDragGesture: true,
@@ -98,6 +98,7 @@ class DashboardView extends GetView<DashController> {
   }
 
   _onPageChanged(int index) {
+    print("PAGE " + index.toString());
     try {
       controller.pageCtrl.animateToPage(index, duration: const Duration(milliseconds: 350), curve: Curves.ease);
       controller.currentIndex.value = index;
@@ -108,3 +109,4 @@ class DashboardView extends GetView<DashController> {
 }
 
 const pages = [HomeView(), ChatView(), MarketView()];
+const title = ["Home","Chat", "Market","More"];

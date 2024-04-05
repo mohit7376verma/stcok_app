@@ -11,10 +11,12 @@ dependencies:
     sdk: flutter
 
   get: 4.6.6
+  dio: ^5.4.0
   warp: ^0.1.0
   get_cli: ^1.8.4
   get_storage: ^2.1.1
   flutter_svg: ^2.0.9
+  emoji_picker_flutter: ^1.6.3
   cached_network_image: ^3.3.0
 
 

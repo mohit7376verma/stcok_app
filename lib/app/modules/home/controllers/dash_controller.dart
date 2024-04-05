@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DashController extends GetxController {
@@ -6,6 +6,7 @@ class DashController extends GetxController {
   var isDrawerOpen = false.obs;
 
   PageController pageCtrl = PageController(initialPage: 0, keepPage: true);
+  var scaffoldKey = GlobalObjectKey<ScaffoldState>(ScaffoldState());
 
   final count = 0.obs;
 

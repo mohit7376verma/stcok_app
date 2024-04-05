@@ -11,6 +11,7 @@ const surfaceClr = Color(0xFFFFFFFF);
 const surfaceVariantClr = Color(0xFFBCB9B9);
 
 const shadowClr = Color(0xFF000000);
+const outlineClr = Color(0xFF757780);
 
 
 
