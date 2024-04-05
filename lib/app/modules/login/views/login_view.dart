@@ -38,7 +38,7 @@ class LoginView extends GetView<LoginController> {
                       SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                       CommonTextField(
                         controller: controller.emailController,
-                        hintText: "Enter Email Address",
+                        hintText: "Please Enter Email Address",
                         keyboardType: TextInputType.emailAddress,
                         focus: controller.emailFocus,
                         validator: validateEmail,
