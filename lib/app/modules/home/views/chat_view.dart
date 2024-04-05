@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stock_app/app/modules/home/controllers/dash_controller.dart';
 import 'package:stock_app/generated/assets.dart';
 
 import '../../../models/chat_model.dart';
@@ -8,9 +9,8 @@ import '../../../theme/app_colors.dart';
 import '../../../utils/pref.dart';
 import '../../../widgets/common_text.dart';
 import '../../../widgets/image.dart';
-import '../../Dashboard/controllers/dashboard_controller.dart';
 
-class ChatView extends GetView<DashboardController> {
+class ChatView extends GetView<DashController> {
   const ChatView({super.key});
 
   @override

@@ -18,7 +18,6 @@ class DashboardView extends GetView<DashController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Obx(() {
       return Scaffold(
         key: controller.scaffoldKey,
@@ -38,7 +37,7 @@ class DashboardView extends GetView<DashController> {
         body: SafeArea(
           child: PageView(
             controller: controller.pageCtrl,
-            onPageChanged: _onPageChanged,
+            onPageChanged: controller.onPageChanged(controller.currentIndex.value),
             physics: const NeverScrollableScrollPhysics(),
             children: pages,
           ),
@@ -68,7 +67,7 @@ class DashboardView extends GetView<DashController> {
           if (index == 3) {
             scaffoldKey.currentState?.openDrawer();
           } else {
-            _onPageChanged(index);
+            controller.onPageChanged(index);
           }
         },
         selectedIndex: controller.currentIndex.value,
@@ -96,17 +95,7 @@ class DashboardView extends GetView<DashController> {
       );
     }
   }
-
-  _onPageChanged(int index) {
-    print("PAGE " + index.toString());
-    try {
-      controller.pageCtrl.animateToPage(index, duration: const Duration(milliseconds: 350), curve: Curves.ease);
-      controller.currentIndex.value = index;
-    } catch (e) {
-      e.printError();
-    }
-  }
 }
 
 const pages = [HomeView(), ChatView(), MarketView()];
-const title = ["Home","Chat", "Market","More"];
+const title = ["Home", "Chat", "Market", "More"];

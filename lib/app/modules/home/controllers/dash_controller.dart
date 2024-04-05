@@ -26,4 +26,15 @@ class DashController extends GetxController {
   }
 
   void increment() => count.value++;
+
+  chatRefresh() {}
+
+  onPageChanged(int index) {
+    try {
+      pageCtrl.animateToPage(index, duration: const Duration(milliseconds: 350), curve: Curves.ease);
+      currentIndex.value = index;
+    } catch (e) {
+      e.printError();
+    }
+  }
 }
