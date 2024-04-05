@@ -110,21 +110,21 @@ class SquareImageFromNetwork extends StatelessWidget {
       return placeholderWidget ?? (placeholder!.isNullOrEmpty ? const SizedBox.shrink() : Image.asset(placeholder!, fit: fit));
     }
 
-    return const SizedBox.shrink();
-    // return CachedNetworkImage(
-    //   width: size,
-    //   height: size,
-    //   imageUrl: imageUrl,
-    //   httpHeaders: {'Authorization': 'Bearer ${AppPref.userToken}'},
-    //   placeholder: (context, url) =>
-    //       placeholderWidget ??
-    //       (placeholder.isNullOrEmpty ? const SizedBox.shrink() : Image.asset(placeholder!, fit: fit)),
-    //   errorWidget: (context, url, error) =>
-    //       placeholderWidget ??
-    //       (placeholder.isNullOrEmpty ? const SizedBox.shrink() : Image.asset(placeholder!, fit: fit)),
-    //   fit: fit,
-    //   useOldImageOnUrlChange: true,
-    // );
+    // return const SizedBox.shrink();
+    return CachedNetworkImage(
+      width: size,
+      height: size,
+      imageUrl: imageUrl,
+      // httpHeaders: {'Authorization': 'Bearer ${AppPref.userToken}'},
+      placeholder: (context, url) =>
+          placeholderWidget ??
+          (placeholder.isNullOrEmpty ? const SizedBox.shrink() : Image.asset(placeholder!, fit: fit)),
+      errorWidget: (context, url, error) =>
+          placeholderWidget ??
+          (placeholder.isNullOrEmpty ? const SizedBox.shrink() : Image.asset(placeholder!, fit: fit)),
+      fit: fit,
+      useOldImageOnUrlChange: true,
+    );
   }
 }
 

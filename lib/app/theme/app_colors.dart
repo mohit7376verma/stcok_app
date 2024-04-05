@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 const primaryClr = Color(0xFF16A53B);
+const primaryClr_50 = Color(0xFF16A53B,);
 const onPrimaryClr = Color(0xFFFFFFFF);
 
 const secondaryClr = Color(0xFF000000);

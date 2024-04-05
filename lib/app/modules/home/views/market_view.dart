@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:stock_app/app/modules/home/controllers/dash_controller.dart';
 
-class MarketView extends StatefulWidget {
-  const MarketView({super.key});
+class MarketView extends GetView<DashController> {
+  const MarketView({Key? key}) : super(key: key);
 
-  @override
-  State<MarketView> createState() => _MarketViewState();
-}
-
-class _MarketViewState extends State<MarketView> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,3 +12,4 @@ class _MarketViewState extends State<MarketView> {
     );
   }
 }
+

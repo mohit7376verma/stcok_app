@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:stock_app/app/modules/home/views/home_view.dart';
 import 'package:stock_app/app/modules/home/views/market_view.dart';
 import 'package:stock_app/app/modules/home/views/more_view.dart';
+import 'package:stock_app/app/modules/home/views/news_view.dart';
 import 'package:stock_app/app/widgets/common_app_bar.dart';
 import 'package:stock_app/app/widgets/common_text.dart';
 import 'package:stock_app/generated/assets.dart';
@@ -59,12 +60,13 @@ class DashboardView extends GetView<DashController> {
       return NavigationBar(
         destinations: [
           navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Home"),
-          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Chat"),
           navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Market"),
+          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Chat"),
+          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "News"),
           navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "More"),
         ],
         onDestinationSelected: (int index) {
-          if (index == 3) {
+          if (index == 4) {
             scaffoldKey.currentState?.openDrawer();
           } else {
             controller.onPageChanged(index);
@@ -72,7 +74,7 @@ class DashboardView extends GetView<DashController> {
         },
         selectedIndex: controller.currentIndex.value,
         backgroundColor: surfaceClr,
-        elevation: 0.0,
+        elevation: 2.0,
         indicatorColor: primaryClr,
         indicatorShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
@@ -85,17 +87,17 @@ class DashboardView extends GetView<DashController> {
   NavigationDestination navItem(String icon, String activeIcon, String title) {
     if (title.toLowerCase() == "more") {
       return NavigationDestination(
-        icon: CommonText.regular(title),
+        icon: CommonText.semiBold(title,size: 12,),
         label: title,
       );
     } else {
       return NavigationDestination(
-        icon: CommonText.regular(title),
+        icon: CommonText.semiBold(title,size: 12),
         label: title,
       );
     }
   }
 }
 
-const pages = [HomeView(), ChatView(), MarketView()];
+const pages = [HomeView(),MarketView(), ChatView(),NewsView()];
 const title = ["Home", "Chat", "Market", "More"];
