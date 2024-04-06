@@ -65,6 +65,7 @@ class ChatView extends GetView<DashController> {
                     controller: controller.searchController,
                     inputAction: TextInputAction.search,
                     cursorColor: neutralClr,
+                    textColor: primaryClr,
                     focus: controller.searchFocus,
                     prefixIcon: IconButton(
                       icon: const SquareSvgImageFromAsset(Assets.imagesIcSearch, size: 20),

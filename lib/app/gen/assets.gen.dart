@@ -42,6 +42,14 @@ class Assets {
   static const SvgGenImage imagesIcForward =
       SvgGenImage('assets/images/ic_forward.svg');
 
+  /// File path: assets/images/ic_logout.svg
+  static const SvgGenImage imagesIcLogout =
+      SvgGenImage('assets/images/ic_logout.svg');
+
+  /// File path: assets/images/ic_mail.svg
+  static const SvgGenImage imagesIcMail =
+      SvgGenImage('assets/images/ic_mail.svg');
+
   /// File path: assets/images/ic_notification.svg
   static const SvgGenImage imagesIcNotification =
       SvgGenImage('assets/images/ic_notification.svg');
@@ -49,6 +57,10 @@ class Assets {
   /// File path: assets/images/ic_pencil.svg
   static const SvgGenImage imagesIcPencil =
       SvgGenImage('assets/images/ic_pencil.svg');
+
+  /// File path: assets/images/ic_person.svg
+  static const SvgGenImage imagesIcPerson =
+      SvgGenImage('assets/images/ic_person.svg');
 
   /// File path: assets/images/ic_search.svg
   static const SvgGenImage imagesIcSearch =
@@ -67,8 +79,11 @@ class Assets {
         imagesIcEye,
         imagesIcEyeOff,
         imagesIcForward,
+        imagesIcLogout,
+        imagesIcMail,
         imagesIcNotification,
         imagesIcPencil,
+        imagesIcPerson,
         imagesIcSearch,
         imagesIcTrash
       ];

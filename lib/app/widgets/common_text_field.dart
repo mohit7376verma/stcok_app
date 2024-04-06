@@ -75,8 +75,8 @@ class CommonTextField extends StatelessWidget {
     this.buildCounter,
     this.textCapitalization,
     this.borderColor = primaryClr,
-    this.bgColor = surfaceClr,
-    this.textColor = shadowClr,
+    this.bgColor = cardClr,
+    this.textColor = secondaryClr,
     this.cursorColor = secondaryClr
   }) : _fieldKey = globalKey;
 

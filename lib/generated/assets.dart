@@ -9,8 +9,11 @@ class Assets {
   static const String imagesIcEye = 'assets/images/ic_eye.svg';
   static const String imagesIcEyeOff = 'assets/images/ic_eye_off.svg';
   static const String imagesIcForward = 'assets/images/ic_forward.svg';
+  static const String imagesIcLogout = 'assets/images/ic_logout.svg';
+  static const String imagesIcMail = 'assets/images/ic_mail.svg';
   static const String imagesIcNotification = 'assets/images/ic_notification.svg';
   static const String imagesIcPencil = 'assets/images/ic_pencil.svg';
+  static const String imagesIcPerson = 'assets/images/ic_person.svg';
   static const String imagesIcSearch = 'assets/images/ic_search.svg';
   static const String imagesIcTrash = 'assets/images/ic_trash.svg';
 

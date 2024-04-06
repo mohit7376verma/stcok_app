@@ -10,6 +10,7 @@ class Prefs {
   static const String email = 'user_email';
   static const String image = 'user_image';
   static const String id = 'user_id';
+  static const String phone = 'phone';
 
   final GetStorage _prefs = GetStorage(sharedPref);
 

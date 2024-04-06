@@ -15,7 +15,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: onBackgroundClr,
+      backgroundColor: primaryClr,
       appBar: const CommonAppBar(title: "Forgot Password"),
       body: SingleChildScrollView(
         child: Container(

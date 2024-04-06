@@ -1,16 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:stock_app/app/gen/assets.gen.dart';
 import 'package:stock_app/app/theme/app_colors.dart';
 import 'package:stock_app/app/widgets/common_button.dart';
 import 'package:stock_app/app/widgets/common_text.dart';
 import 'package:stock_app/app/widgets/image.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/constants.dart';
 import '../controllers/dash_controller.dart';
 
@@ -37,7 +33,7 @@ class HomeView extends GetView<DashController> {
                 )),
                 CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12, mPadding: EdgeInsets.all(6)),
               ],
-            ).marginOnly(left:16,right: 16),
+            ).marginOnly(left: 16, right: 16),
             Container(
               decoration: const BoxDecoration(
                 color: primaryClr,
@@ -55,20 +51,23 @@ class HomeView extends GetView<DashController> {
                   size: 18,
                 )),
                 CommonButton.outline(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(Routes.MY_STOCK);
+                  },
                   label: "View All",
                   textSize: 12,
                   mPadding: EdgeInsets.all(4),
                 ),
               ],
-            ).marginOnly(left:16,right: 16),
+            ).marginOnly(left: 16, right: 16),
             Container(
                     decoration: const BoxDecoration(
                       color: primaryClr,
                       // borderRadius: BorderRadius.all(Radius.circular(12)),
                       // boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]
                     ),
-                    child: Expanded(child: myStocks(context))).marginAll(8)
+                    child: Expanded(child: myStocks(context)))
+                .marginAll(8)
           ],
         ),
       ),
@@ -189,7 +188,7 @@ class HomeView extends GetView<DashController> {
         });
   }
 
-  Widget appBar(){
+  Widget appBar() {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -215,14 +214,14 @@ class HomeView extends GetView<DashController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       CommonText.medium(
+                      CommonText.medium(
                         "Johan Dio",
                         size: 16,
                       ),
-                       CommonText.medium(
+                      CommonText.medium(
                         "Johan Dio",
                         size: 12,
-                         color: neutralClr,
+                        color: neutralClr,
                       ),
                     ],
                   ).marginOnly(left: 4)
@@ -235,14 +234,19 @@ class HomeView extends GetView<DashController> {
               CircleAvatar(
                 radius: 20,
                 backgroundColor: cardClr,
-                child: Icon(Icons.search,color: tertiaryClr,).marginAll(4),
+                child: Icon(
+                  Icons.search,
+                  color: tertiaryClr,
+                ).marginAll(4),
               ),
               CircleAvatar(
                 radius: 20,
                 backgroundColor: cardClr,
-                child: Icon(Icons.notifications,color: tertiaryClr,).marginAll(4),
+                child: Icon(
+                  Icons.notifications,
+                  color: tertiaryClr,
+                ).marginAll(4),
               ).marginOnly(left: 8),
-
             ],
           ),
         ],

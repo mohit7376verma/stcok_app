@@ -8,6 +8,7 @@ import '../../../utils/constants.dart';
 import '../../../widgets/common_app_bar.dart';
 import '../../../widgets/common_text.dart';
 import '../../../widgets/image.dart';
+import '../../../widgets/widgets.dart';
 import '../controllers/dash_controller.dart';
 
 class MoreView extends GetView<DashController> {
@@ -15,7 +16,7 @@ class MoreView extends GetView<DashController> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> mList = [home, profile, aboutUs, contactUs, tutorial, setting, leaderboard, myStock, logout];
+    List<String> mList = [profile, aboutUs, contactUs, tutorial, setting, myStock, logout];
     return Scaffold(
       appBar: const CommonAppBar(
         title: "More",
@@ -25,7 +26,7 @@ class MoreView extends GetView<DashController> {
       backgroundColor: primaryClr,
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 16),
+          margin: const EdgeInsets.only(bottom: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -75,12 +76,6 @@ class MoreView extends GetView<DashController> {
 
   void startNavigation(String navigateTo, BuildContext context) {
     switch (navigateTo) {
-      case home:
-        {
-          controller.pageCtrl.animateToPage(0, duration: const Duration(milliseconds: 350), curve: Curves.ease);
-          controller.currentIndex.value = 0;
-          break;
-        }
       case profile:
         {
           Get.toNamed(Routes.PROFILE);
@@ -90,6 +85,40 @@ class MoreView extends GetView<DashController> {
         {
           Get.toNamed(Routes.ABOUT_US);
           break;
+        }
+
+      case contactUs:
+        {
+          Get.toNamed(Routes.CONTACT_US);
+          break;
+        }
+      case myStock:
+        {
+          Get.toNamed(Routes.MY_STOCK);
+          break;
+        }
+
+      case tutorial:
+        {
+          Get.toNamed(Routes.TUTORIAL);
+          break;
+        }
+
+      case logout:
+        {
+          showSheet(
+            context: context,
+            title: "Logout",
+            message: "Are you sure you want to logout?",
+            primaryBtnText: "Confirm",
+            showSecondaryBtn: true,
+            secondaryBtnText: "Cancel",
+            image: Assets.imagesIcLogout,
+            onPrimaryBtnClick: () {
+              Get.back();
+            },
+            onSecondaryBtnClick: () => Get.back(),
+          );
         }
     }
   }

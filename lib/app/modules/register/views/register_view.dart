@@ -15,7 +15,7 @@ class RegisterView extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: onBackgroundClr,
+      backgroundColor: primaryClr,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
