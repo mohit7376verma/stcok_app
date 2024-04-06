@@ -55,29 +55,24 @@ Widget _singleItem(BuildContext context, String item, VoidCallback? onTap) {
       Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: surfaceClr,
+          color: primaryClr,
           borderRadius: BorderRadius.circular(8),
-          boxShadow: [BoxShadow(color: onBackgroundClr.withOpacity(0.05), blurRadius: 4)],
+          // boxShadow: [BoxShadow(color: onBackgroundClr.withOpacity(0.05), blurRadius: 4)],
         ),
-        child: Material(
-          child: Ink(
-            decoration: BoxDecoration(
-              color: surfaceClr,
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: [BoxShadow(color: onBackgroundClr.withOpacity(0.05), blurRadius: 4)],
-            ),
-            child: InkWell(
-              onTap: onTap,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: CommonText.medium(item, size: 14, color: secondaryClr),
-                  ),
-                  const SquareSvgImageFromAsset(Assets.imagesIcForward, color: primaryClr, size: 20),
-                ],
-              ).paddingAll(16),
-            ),
-          ),
+        child: InkWell(
+          focusColor: Colors.transparent,
+          splashColor: neutralClr,
+          hoverColor: neutralClr,
+          highlightColor: neutralClr,
+          onTap: onTap,
+          child: Row(
+            children: [
+              Expanded(
+                child: CommonText.medium(item, size: 14, color: secondaryClr),
+              ),
+              const SquareSvgImageFromAsset(Assets.imagesIcForward, color: neutralClr, size: 20),
+            ],
+          ).paddingAll(16),
         ),
       ).marginOnly(left: 16, right: 16, bottom: 8, top: 8),
     ],

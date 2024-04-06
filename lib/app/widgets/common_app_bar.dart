@@ -43,10 +43,10 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? IconButton(
               splashRadius: 24,
               onPressed: onBackTap ?? () => Get.back(),
-              icon: SquareSvgImageFromAsset(leadingIcon ?? Assets.imagesIcBack.path, color: onPrimaryClr),
+              icon: SquareSvgImageFromAsset(leadingIcon ?? Assets.imagesIcBack.path, color: secondaryClr),
             )
           : null,
-      title: CommonText.bold(title, size: size ?? 18, color: onPrimaryClr, textAlign: TextAlign.start),
+      title: CommonText.bold(title, size: size ?? 18, color: secondaryClr, textAlign: TextAlign.start),
       centerTitle: titleCentered,
       actions: actions,
      scrolledUnderElevation: 0.0,

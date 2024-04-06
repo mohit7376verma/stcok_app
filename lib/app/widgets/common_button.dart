@@ -21,7 +21,7 @@ class CommonButton extends StatelessWidget {
     this.child,
     this.mPadding = pad,
     this.textSize = 12.0,
-    this.labelColor = onPrimaryClr,
+    this.labelColor = tertiaryClr,
     this.bgColor = primaryClr,
     this.isOutlineButton = false,
     Key? key,

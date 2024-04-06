@@ -15,6 +15,7 @@ void main() {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      theme: ThemeData.from(colorScheme: darkColorScheme),
       debugShowCheckedModeBanner: false,
     ),
   );

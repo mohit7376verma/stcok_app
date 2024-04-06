@@ -31,7 +31,7 @@ class DashboardView extends GetView<DashController> {
             IconButton(
               splashRadius: 24,
               onPressed: () => {},
-              icon: const SquareSvgImageFromAsset(Assets.imagesIcSearch, color: onPrimaryClr),
+              icon: const SquareSvgImageFromAsset(Assets.imagesIcSearch, color: secondaryClr),
             )
           ],
         ),
@@ -44,6 +44,7 @@ class DashboardView extends GetView<DashController> {
           ),
         ),
         bottomNavigationBar: _bottomBar(context, controller.scaffoldKey),
+
         drawer: Drawer(width: MediaQuery.sizeOf(context).width * .75, backgroundColor: onBackgroundClr, elevation: 0.0, child: const Center(child: MoreView())),
         drawerDragStartBehavior: DragStartBehavior.start,
         drawerEnableOpenDragGesture: true,

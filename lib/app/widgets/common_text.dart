@@ -89,7 +89,7 @@ class CommonText extends StatelessWidget {
   const CommonText.medium(
       this.text, {
         this.size = 12,
-        this.color = shadowClr,
+        this.color = secondaryClr,
         this.textAlign,
         this.overflow,
         this.maxLines,

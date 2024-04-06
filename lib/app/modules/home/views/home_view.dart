@@ -20,52 +20,56 @@ class HomeView extends GetView<DashController> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-          topHeaderSection(context),
-           Row(
-             children: [
-               const Expanded(child: CommonText.medium("Favorite Stocks",size: 18,)),
-               CommonButton.outline(onPressed: (){
-                 
-               },
-                 label: "View All",
-                 textSize: 12,
-                  mPadding:  EdgeInsets.all(6)
-               ),
-             ],
-           ).marginOnly(left: 16,right: 16,top: 8,bottom: 8),
-          Container(
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
-            child: favoriteStocks(context),
-            height: MediaQuery.of(context).size.height * 0.21,
-          ).marginOnly(left: 16,right: 16,top: 8,bottom: 8),
-          Row(
-            children: [
-              const Expanded(child: CommonText.medium("My Stocks",size: 18,)),
-              CommonButton.outline(onPressed: (){
-          
-              },
-                label: "View All",
-                textSize: 12,
-                mPadding: EdgeInsets.all(6),
-              ),
-            ],
-          ).marginOnly(left: 16,right: 16,top: 8,bottom: 8),
-          Container(
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
-            child: Expanded(child: myStocks(context)).paddingAll( 8)
-          ).marginOnly(left: 16,right: 16,top: 8,bottom: 8)
-                ],
-              ),
-        ));
+      child: Container(
+        color: primaryClr,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            topHeaderSection(context),
+            Row(
+              children: [
+                const Expanded(
+                    child: CommonText.medium(
+                  "Favorite Stocks",
+                  size: 18,
+                )),
+                CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12, mPadding: EdgeInsets.all(6)),
+              ],
+            ).marginOnly(left: 16, right: 16, top: 8, bottom: 8),
+            Container(
+              decoration: const BoxDecoration(
+                  color: primaryClr,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
+              child: favoriteStocks(context),
+              height: MediaQuery.of(context).size.height * 0.21,
+            ).marginOnly(left: 16, right: 16, top: 8, bottom: 8),
+            Row(
+              children: [
+                const Expanded(
+                    child: CommonText.medium(
+                  "My Stocks",
+                  size: 18,
+                )),
+                CommonButton.outline(
+                  onPressed: () {},
+                  label: "View All",
+                  textSize: 12,
+                  mPadding: EdgeInsets.all(6),
+                ),
+              ],
+            ).marginOnly(left: 16, right: 16, top: 8, bottom: 8),
+            Container(
+                    decoration: const BoxDecoration(
+                        color: primaryClr,
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
+                    child: Expanded(child: myStocks(context)).paddingAll(8))
+                .marginOnly(left: 16, right: 16, top: 8, bottom: 8)
+          ],
+        ),
+      ),
+    ));
   }
 
   Widget topHeaderSection(BuildContext context) {
@@ -77,17 +81,20 @@ class HomeView extends GetView<DashController> {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: primaryClr,
                     borderRadius: BorderRadius.all(Radius.circular(12)),
-                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
+                    boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
                 child: Row(
                   children: [
                     CircleAvatar(
                       radius: 22,
                       backgroundColor: primaryClr,
                       child: Container(
-                        decoration: BoxDecoration(color: Colors.white,shape: BoxShape.circle,),
-                        child:  Image.asset(Assets.imagesAvatar.path),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Image.asset(Assets.imagesAvatar.path),
                         clipBehavior: Clip.hardEdge,
                       ).marginAll(2),
                     ),
@@ -102,14 +109,14 @@ class HomeView extends GetView<DashController> {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: primaryClr,
                     borderRadius: BorderRadius.all(Radius.circular(12)),
-                    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
+                    boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
                 child: Row(
                   children: [
                     CircleAvatar(
                       radius: 22,
-                      backgroundColor: Colors.white,
+                      backgroundColor: primaryClr,
                       child: Assets.imagesIcBack.svg(height: 24, width: 24).marginAll(4),
                     ),
                     const CommonText.medium(
@@ -124,9 +131,9 @@ class HomeView extends GetView<DashController> {
         ).marginAll(8),
         Container(
           decoration: const BoxDecoration(
-              color: Colors.white,
+              color: primaryClr,
               borderRadius: BorderRadius.all(Radius.circular(12)),
-              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
+              boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -153,18 +160,24 @@ class HomeView extends GetView<DashController> {
       childAspectRatio: 2 / 1,
       children: List.generate(4, (index) {
         return Container(
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
               color: primaryClr,
               borderRadius: BorderRadius.all(Radius.circular(12)),
               boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(color: Colors.white,shape: BoxShape.circle,),
-                child:  SquareImageFromNetwork(imageUrl: defaultImage,fit: BoxFit.cover,size: 40,),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                child: SquareImageFromNetwork(
+                  imageUrl: defaultImage,
+                  fit: BoxFit.cover,
+                  size: 40,
+                ),
                 clipBehavior: Clip.hardEdge,
               ).marginAll(2),
-
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -188,46 +201,50 @@ class HomeView extends GetView<DashController> {
   }
 
   Widget myStocks(BuildContext context) {
-    return
-      ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: 8,
-          itemBuilder: (context, index) {
-            return Container(
-              decoration:  const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 22,
-                    backgroundColor: primaryClr,
-                    child: Container(
-                      decoration: BoxDecoration(color: Colors.white,shape: BoxShape.circle,),
-                      child:  SquareImageFromNetwork(imageUrl: defaultImage,fit: BoxFit.cover,size: 44,),
-                      clipBehavior: Clip.hardEdge,
-                    ).marginAll(2),
-                  ),
-
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CommonText.semiBold(
-                        "Stocks Name",
-                        size: 14,
-                      ),
-                      CommonText.semiBold(
-                        "\$13.2342",
-                        size: 14,
-                      ),
-                    ],
-                  ).marginOnly(left: 8)
-                ],
-              ).paddingAll(12),
-            ).paddingAll(8);
-          });
-
+    return ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 8,
+        itemBuilder: (context, index) {
+          return Container(
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 22,
+                  backgroundColor: primaryClr,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: SquareImageFromNetwork(
+                      imageUrl: defaultImage,
+                      fit: BoxFit.cover,
+                      size: 44,
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                  ).marginAll(2),
+                ),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CommonText.semiBold(
+                      "Stocks Name",
+                      size: 14,
+                    ),
+                    CommonText.semiBold(
+                      "\$13.2342",
+                      size: 14,
+                    ),
+                  ],
+                ).marginOnly(left: 8)
+              ],
+            ).paddingAll(12),
+          ).paddingAll(8);
+        });
   }
 }
