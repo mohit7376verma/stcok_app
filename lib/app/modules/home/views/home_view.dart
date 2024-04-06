@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
@@ -35,15 +36,16 @@ class HomeView extends GetView<DashController> {
                 )),
                 CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12, mPadding: EdgeInsets.all(6)),
               ],
-            ).marginOnly(left: 16, right: 16, top: 8, bottom: 8),
+            ).marginAll(8),
             Container(
               decoration: const BoxDecoration(
-                  color: primaryClr,
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
+                color: primaryClr,
+                // borderRadius: BorderRadius.all(Radius.circular(12)),
+                // boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]
+              ),
               child: favoriteStocks(context),
-              height: MediaQuery.of(context).size.height * 0.21,
-            ).marginOnly(left: 16, right: 16, top: 8, bottom: 8),
+              height: MediaQuery.of(context).size.height * 0.23,
+            ).marginAll(8),
             Row(
               children: [
                 const Expanded(
@@ -58,14 +60,15 @@ class HomeView extends GetView<DashController> {
                   mPadding: EdgeInsets.all(6),
                 ),
               ],
-            ).marginOnly(left: 16, right: 16, top: 8, bottom: 8),
+            ).marginAll(8),
             Container(
                     decoration: const BoxDecoration(
-                        color: primaryClr,
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
-                    child: Expanded(child: myStocks(context)).paddingAll(8))
-                .marginOnly(left: 16, right: 16, top: 8, bottom: 8)
+                      color: primaryClr,
+                      // borderRadius: BorderRadius.all(Radius.circular(12)),
+                      // boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]
+                    ),
+                    child: Expanded(child: myStocks(context)))
+                .marginAll(8)
           ],
         ),
       ),
@@ -81,9 +84,14 @@ class HomeView extends GetView<DashController> {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                    color: primaryClr,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
+                  color: cardClr,
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  border: Border(
+                      top: BorderSide(color: outlineClr),
+                      left: BorderSide(color: outlineClr),
+                      right: BorderSide(color: outlineClr),
+                      bottom: BorderSide(color: outlineClr)),
+                ),
                 child: Row(
                   children: [
                     CircleAvatar(
@@ -109,9 +117,14 @@ class HomeView extends GetView<DashController> {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                    color: primaryClr,
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
+                  color: cardClr,
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  border: Border(
+                      top: BorderSide(color: outlineClr),
+                      left: BorderSide(color: outlineClr),
+                      right: BorderSide(color: outlineClr),
+                      bottom: BorderSide(color: outlineClr)),
+                ),
                 child: Row(
                   children: [
                     CircleAvatar(
@@ -131,9 +144,14 @@ class HomeView extends GetView<DashController> {
         ).marginAll(8),
         Container(
           decoration: const BoxDecoration(
-              color: primaryClr,
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]),
+            color: cardClr,
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+            border: Border(
+                top: BorderSide(color: outlineClr),
+                left: BorderSide(color: outlineClr),
+                right: BorderSide(color: outlineClr),
+                bottom: BorderSide(color: outlineClr)),
+          ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -160,10 +178,15 @@ class HomeView extends GetView<DashController> {
       childAspectRatio: 2 / 1,
       children: List.generate(4, (index) {
         return Container(
-          decoration: BoxDecoration(
-              color: primaryClr,
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
+          decoration: const BoxDecoration(
+            color: cardClr,
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+            border: Border(
+                top: BorderSide(color: outlineClr),
+                left: BorderSide(color: outlineClr),
+                right: BorderSide(color: outlineClr),
+                bottom: BorderSide(color: outlineClr)),
+          ),
           child: Row(
             children: [
               Container(
@@ -180,16 +203,17 @@ class HomeView extends GetView<DashController> {
               ).marginAll(2),
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CommonText.semiBold(
                     "Stocks Name",
-                    color: Colors.white,
+                    color: secondaryClr,
                     size: 14,
                   ),
                   CommonText.semiBold(
                     "\$13.2342",
                     size: 14,
-                    color: Colors.white,
+                    color: warningClr,
                   ),
                 ],
               ).marginOnly(left: 8)
@@ -208,9 +232,14 @@ class HomeView extends GetView<DashController> {
         itemBuilder: (context, index) {
           return Container(
             decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4.0)]),
+              color: cardClr,
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              border: Border(
+                  top: BorderSide(color: outlineClr),
+                  left: BorderSide(color: outlineClr),
+                  right: BorderSide(color: outlineClr),
+                  bottom: BorderSide(color: outlineClr)),
+            ),
             child: Row(
               children: [
                 CircleAvatar(

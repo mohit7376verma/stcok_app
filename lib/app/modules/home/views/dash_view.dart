@@ -74,7 +74,7 @@ class DashboardView extends GetView<DashController> {
           }
         },
         selectedIndex: controller.currentIndex.value,
-        backgroundColor: surfaceClr,
+        backgroundColor: tertiaryClr,
         elevation: 2.0,
         indicatorColor: primaryClr,
         indicatorShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),

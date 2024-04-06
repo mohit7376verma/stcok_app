@@ -72,7 +72,7 @@ class CommonText extends StatelessWidget {
   const CommonText.semiBold(
       this.text, {
         this.size = 12,
-        this.color = secondaryClr,
+        this.color = onPrimaryClr,
         this.textAlign,
         this.overflow,
         this.maxLines,
