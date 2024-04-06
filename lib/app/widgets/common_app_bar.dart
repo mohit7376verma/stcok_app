@@ -35,7 +35,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: primaryClr
+        statusBarColor: primaryClr,
       ),
       backgroundColor: bgColor,
       automaticallyImplyLeading: hasBackIcon,

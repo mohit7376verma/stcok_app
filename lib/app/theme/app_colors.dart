@@ -6,6 +6,7 @@ const primaryClr = Color(0xFF161A1D);
 const onPrimaryClr = Color(0xFFF6F6F6);
 const secondaryClr = Color(0xFFF6F6F6);
 const tertiaryClr = Color(0xff67b16b);
+const onTertiaryClr = Color(0xff357f3a);
 const neutralClr = Color(0xFF888888);
 const onBackgroundClr = Color(0xFF1E1E1E);
 const errorClr = Color(0xF7D80606);
@@ -46,6 +47,15 @@ const darkColorScheme = ColorScheme(
   shadow: Color(0xCF414141),
   outlineVariant: neutralClr,
   scrim: primaryClr,
+);
+
+var carDecoration=BoxDecoration(
+  color: cardClr,
+  borderRadius: BorderRadius.all(Radius.circular(8)),
+  border: Border.all(
+    color: outlineClr,
+    width: 2,
+  ),
 );
 
 

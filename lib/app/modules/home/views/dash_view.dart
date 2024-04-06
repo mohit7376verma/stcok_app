@@ -22,19 +22,6 @@ class DashboardView extends GetView<DashController> {
     return Obx(() {
       return Scaffold(
         key: controller.scaffoldKey,
-        appBar: CommonAppBar(
-          title: title[controller.currentIndex.value],
-          leadingIcon: Assets.imagesIcNotification,
-          hasBackIcon: true,
-          onBackTap: () {},
-          actions: [
-            IconButton(
-              splashRadius: 24,
-              onPressed: () => {},
-              icon: const SquareSvgImageFromAsset(Assets.imagesIcSearch, color: secondaryClr),
-            )
-          ],
-        ),
         body: SafeArea(
           child: PageView(
             controller: controller.pageCtrl,
@@ -76,8 +63,8 @@ class DashboardView extends GetView<DashController> {
         selectedIndex: controller.currentIndex.value,
         backgroundColor: tertiaryClr,
         elevation: 2.0,
-        indicatorColor: primaryClr,
-        indicatorShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        indicatorColor: onTertiaryClr,
+        indicatorShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100),),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
       );
     } else {
@@ -98,6 +85,9 @@ class DashboardView extends GetView<DashController> {
       );
     }
   }
+  
+
+  
 }
 
 const pages = [HomeView(),MarketView(), ChatView(),NewsView()];

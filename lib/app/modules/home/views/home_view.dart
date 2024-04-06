@@ -26,6 +26,7 @@ class HomeView extends GetView<DashController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            appBar(),
             topHeaderSection(context),
             Row(
               children: [
@@ -36,7 +37,7 @@ class HomeView extends GetView<DashController> {
                 )),
                 CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12, mPadding: EdgeInsets.all(6)),
               ],
-            ).marginAll(8),
+            ).marginOnly(left:16,right: 16),
             Container(
               decoration: const BoxDecoration(
                 color: primaryClr,
@@ -57,18 +58,17 @@ class HomeView extends GetView<DashController> {
                   onPressed: () {},
                   label: "View All",
                   textSize: 12,
-                  mPadding: EdgeInsets.all(6),
+                  mPadding: EdgeInsets.all(4),
                 ),
               ],
-            ).marginAll(8),
+            ).marginOnly(left:16,right: 16),
             Container(
                     decoration: const BoxDecoration(
                       color: primaryClr,
                       // borderRadius: BorderRadius.all(Radius.circular(12)),
                       // boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]
                     ),
-                    child: Expanded(child: myStocks(context)))
-                .marginAll(8)
+                    child: Expanded(child: myStocks(context))).marginAll(8)
           ],
         ),
       ),
@@ -78,80 +78,8 @@ class HomeView extends GetView<DashController> {
   Widget topHeaderSection(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: cardClr,
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  border: Border(
-                      top: BorderSide(color: outlineClr),
-                      left: BorderSide(color: outlineClr),
-                      right: BorderSide(color: outlineClr),
-                      bottom: BorderSide(color: outlineClr)),
-                ),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 22,
-                      backgroundColor: primaryClr,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.asset(Assets.imagesAvatar.path),
-                        clipBehavior: Clip.hardEdge,
-                      ).marginAll(2),
-                    ),
-                    const CommonText.medium(
-                      "Johan Dio",
-                      size: 16,
-                    ).marginOnly(left: 8)
-                  ],
-                ).paddingAll(12),
-              ).paddingAll(8),
-            ),
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: cardClr,
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  border: Border(
-                      top: BorderSide(color: outlineClr),
-                      left: BorderSide(color: outlineClr),
-                      right: BorderSide(color: outlineClr),
-                      bottom: BorderSide(color: outlineClr)),
-                ),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 22,
-                      backgroundColor: primaryClr,
-                      child: Assets.imagesIcBack.svg(height: 24, width: 24).marginAll(4),
-                    ),
-                    const CommonText.medium(
-                      "Name",
-                      size: 16,
-                    ).marginOnly(left: 8)
-                  ],
-                ).paddingAll(12),
-              ).paddingAll(8),
-            ),
-          ],
-        ).marginAll(8),
         Container(
-          decoration: const BoxDecoration(
-            color: cardClr,
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            border: Border(
-                top: BorderSide(color: outlineClr),
-                left: BorderSide(color: outlineClr),
-                right: BorderSide(color: outlineClr),
-                bottom: BorderSide(color: outlineClr)),
-          ),
+          decoration: carDecoration,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -178,15 +106,7 @@ class HomeView extends GetView<DashController> {
       childAspectRatio: 2 / 1,
       children: List.generate(4, (index) {
         return Container(
-          decoration: const BoxDecoration(
-            color: cardClr,
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            border: Border(
-                top: BorderSide(color: outlineClr),
-                left: BorderSide(color: outlineClr),
-                right: BorderSide(color: outlineClr),
-                bottom: BorderSide(color: outlineClr)),
-          ),
+          decoration: carDecoration,
           child: Row(
             children: [
               Container(
@@ -231,20 +151,12 @@ class HomeView extends GetView<DashController> {
         itemCount: 8,
         itemBuilder: (context, index) {
           return Container(
-            decoration: const BoxDecoration(
-              color: cardClr,
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              border: Border(
-                  top: BorderSide(color: outlineClr),
-                  left: BorderSide(color: outlineClr),
-                  right: BorderSide(color: outlineClr),
-                  bottom: BorderSide(color: outlineClr)),
-            ),
+            decoration: carDecoration,
             child: Row(
               children: [
                 CircleAvatar(
                   radius: 22,
-                  backgroundColor: primaryClr,
+                  backgroundColor: tertiaryClr,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -275,5 +187,66 @@ class HomeView extends GetView<DashController> {
             ).paddingAll(12),
           ).paddingAll(8);
         });
+  }
+
+  Widget appBar(){
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Container(
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: tertiaryClr,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.asset(Assets.imagesAvatar.path),
+                      clipBehavior: Clip.hardEdge,
+                    ),
+                  ),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                       CommonText.medium(
+                        "Johan Dio",
+                        size: 16,
+                      ),
+                       CommonText.medium(
+                        "Johan Dio",
+                        size: 12,
+                         color: neutralClr,
+                      ),
+                    ],
+                  ).marginOnly(left: 4)
+                ],
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: cardClr,
+                child: Icon(Icons.search,color: tertiaryClr,).marginAll(4),
+              ),
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: cardClr,
+                child: Icon(Icons.notifications,color: tertiaryClr,).marginAll(4),
+              ).marginOnly(left: 8),
+
+            ],
+          ),
+        ],
+      ).paddingAll(16),
+    );
   }
 }
