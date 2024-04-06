@@ -5,12 +5,10 @@ import 'package:stock_app/app/modules/home/views/home_view.dart';
 import 'package:stock_app/app/modules/home/views/market_view.dart';
 import 'package:stock_app/app/modules/home/views/more_view.dart';
 import 'package:stock_app/app/modules/home/views/news_view.dart';
-import 'package:stock_app/app/widgets/common_app_bar.dart';
 import 'package:stock_app/app/widgets/common_text.dart';
 import 'package:stock_app/generated/assets.dart';
 
 import '../../../theme/app_colors.dart';
-import '../../../widgets/image.dart';
 import '../controllers/dash_controller.dart';
 import 'chat_view.dart';
 
@@ -31,7 +29,6 @@ class DashboardView extends GetView<DashController> {
           ),
         ),
         bottomNavigationBar: _bottomBar(context, controller.scaffoldKey),
-
         drawer: Drawer(width: MediaQuery.sizeOf(context).width * .75, backgroundColor: onBackgroundClr, elevation: 0.0, child: const Center(child: MoreView())),
         drawerDragStartBehavior: DragStartBehavior.start,
         drawerEnableOpenDragGesture: true,
@@ -64,7 +61,9 @@ class DashboardView extends GetView<DashController> {
         backgroundColor: tertiaryClr,
         elevation: 2.0,
         indicatorColor: onTertiaryClr,
-        indicatorShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100),),
+        indicatorShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
       );
     } else {
@@ -75,20 +74,19 @@ class DashboardView extends GetView<DashController> {
   NavigationDestination navItem(String icon, String activeIcon, String title) {
     if (title.toLowerCase() == "more") {
       return NavigationDestination(
-        icon: CommonText.semiBold(title,size: 12,),
+        icon: CommonText.semiBold(
+          title,
+          size: 12,
+        ),
         label: title,
       );
     } else {
       return NavigationDestination(
-        icon: CommonText.semiBold(title,size: 12),
+        icon: CommonText.semiBold(title, size: 12),
         label: title,
       );
     }
   }
-  
-
-  
 }
 
-const pages = [HomeView(),MarketView(), ChatView(),NewsView()];
-const title = ["Home", "Chat", "Market", "More"];
+const pages = [HomeView(), MarketView(), ChatView(), NewsView()];

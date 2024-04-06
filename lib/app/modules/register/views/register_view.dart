@@ -10,7 +10,7 @@ import '../../../widgets/common_button.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
-  const RegisterView({Key? key}) : super(key: key);
+  const RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +39,10 @@ class RegisterView extends GetView<RegisterController> {
                     child: Column(
                       children: [
                         CommonTextField(
-                          controller: controller.ctrFullName,
-                          hintText: "Full Name",
+                          controller: controller.ctrFirstName,
+                          hintText: "First Name",
                           keyboardType: TextInputType.text,
-                          focus: controller.fullNameFocus,
+                          focus: controller.firstNameFocus,
                           validator: (value) => nameValidateFiled(value, "Please enter your first name!"),
                           prefixIcon: const Padding(
                             padding: EdgeInsets.all(16),

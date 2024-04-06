@@ -43,6 +43,7 @@ class CommonTextField extends StatelessWidget {
   final Color? bgColor;
 
   final Color? textColor;
+  final Color? cursorColor;
 
   const CommonTextField({
     required this.controller,
@@ -75,7 +76,8 @@ class CommonTextField extends StatelessWidget {
     this.textCapitalization,
     this.borderColor = primaryClr,
     this.bgColor = surfaceClr,
-    this.textColor = shadowClr
+    this.textColor = shadowClr,
+    this.cursorColor = secondaryClr
   }) : _fieldKey = globalKey;
 
   @override
@@ -119,7 +121,7 @@ class CommonTextField extends StatelessWidget {
           maxLines: maxLines,
           minLines: minLines,
           readOnly: isReadOnly,
-          cursorColor: secondaryClr,
+          cursorColor: cursorColor,
           inputFormatters: inputFormatters,
           autofillHints: autofillHints,
           decoration:

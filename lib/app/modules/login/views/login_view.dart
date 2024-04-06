@@ -11,7 +11,7 @@ import '../../../widgets/common_button.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class LoginView extends GetView<LoginController> {
                           children: [
                             Radio<bool>(
                               value: true,
-                              activeColor: primaryClr,
+                              activeColor: tertiaryClr,
                               groupValue: controller.isRemember.value,
                               onChanged: (value) {
                                 controller.isRemember.value = value!;

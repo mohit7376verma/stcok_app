@@ -10,6 +10,9 @@ abstract class Routes {
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const CHAT = _Paths.CHAT;
   static const MESSAGE = _Paths.MESSAGE;
+  static const PROFILE = _Paths.PROFILE;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  static const ABOUT_US = _Paths.ABOUT_US;
 }
 
 abstract class _Paths {
@@ -21,4 +24,7 @@ abstract class _Paths {
   static const FORGOT_PASSWORD = '/forgot-password';
   static const CHAT = '/chat';
   static const MESSAGE = '/message';
+  static const PROFILE = '/profile';
+  static const EDIT_PROFILE = '/edit-profile';
+  static const ABOUT_US = '/about-us';
 }

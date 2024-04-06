@@ -2,12 +2,17 @@ import 'package:get/get.dart';
 
 import '../modules/Message/bindings/message_binding.dart';
 import '../modules/Message/views/message_view.dart';
+import '../modules/about_us/bindings/about_us_binding.dart';
+import '../modules/about_us/views/about_us_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/dash_binding.dart';
 import '../modules/home/views/dash_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/edit_profile_view_view.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -50,6 +55,21 @@ class AppPages {
       name: _Paths.MESSAGE,
       page: () => const MessageView(),
       binding: MessageBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => const EditProfileViewView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT_US,
+      page: () => const AboutUsView(),
+      binding: AboutUsBinding(),
     ),
   ];
 }

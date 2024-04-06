@@ -6,9 +6,9 @@ import 'package:stock_app/app/theme/app_colors.dart';
 import 'package:stock_app/app/utils/extensions/extension.dart';
 
 import '../../../../generated/assets.dart';
-import '../../../widgets/commom_text_field.dart';
 import '../../../widgets/common_app_bar.dart';
 import '../../../widgets/common_text.dart';
+import '../../../widgets/common_text_field.dart';
 import '../../../widgets/image.dart';
 import '../../../widgets/widgets.dart';
 import '../controllers/message_controller.dart';
@@ -32,7 +32,7 @@ class MessageView extends GetView<MessageController> {
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: const BoxDecoration(color: onBackgroundClr),
+          decoration: const BoxDecoration(color: primaryClr),
           child: Column(
             children: [
               controller.isLoaderVisible.value ? const SizedBox(height: 4) : const SizedBox(),
@@ -98,7 +98,7 @@ class MessageView extends GetView<MessageController> {
                               controller.emojiShowing.value = !controller.emojiShowing.value;
                               context.hideKeyboard();
                             },
-                            child: SquareSvgImageFromAsset(Assets.imagesIcEmogi, size: 38, color: primaryClr.withOpacity(0.4)),
+                            child: SquareSvgImageFromAsset(Assets.imagesIcEmogi, size: 40, color: onPrimaryClr.withOpacity(0.4)),
                           ),
                         ),
                       ),

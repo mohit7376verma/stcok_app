@@ -4,11 +4,14 @@ class Assets {
 
   static const String imagesAvatar = 'assets/images/avatar.png';
   static const String imagesIcBack = 'assets/images/ic_back.svg';
+  static const String imagesIcCall = 'assets/images/ic_call.svg';
   static const String imagesIcEmogi = 'assets/images/ic_emogi.svg';
   static const String imagesIcEye = 'assets/images/ic_eye.svg';
   static const String imagesIcEyeOff = 'assets/images/ic_eye_off.svg';
   static const String imagesIcForward = 'assets/images/ic_forward.svg';
   static const String imagesIcNotification = 'assets/images/ic_notification.svg';
+  static const String imagesIcPencil = 'assets/images/ic_pencil.svg';
   static const String imagesIcSearch = 'assets/images/ic_search.svg';
+  static const String imagesIcTrash = 'assets/images/ic_trash.svg';
 
 }

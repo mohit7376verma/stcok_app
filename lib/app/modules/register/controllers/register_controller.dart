@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class RegisterController extends GetxController {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  var ctrFullName = TextEditingController();
+  var ctrFirstName = TextEditingController();
   var ctrLastName = TextEditingController();
   var ctrlEmail = TextEditingController();
   var ctrPhone = TextEditingController();
@@ -13,7 +13,7 @@ class RegisterController extends GetxController {
   var ctrlSellPercentage = TextEditingController();
   var ctrlBuyPercentage = TextEditingController();
 
-  FocusNode fullNameFocus = FocusNode();
+  FocusNode firstNameFocus = FocusNode();
   FocusNode lastNameFocus = FocusNode();
   FocusNode emailFocus = FocusNode();
   FocusNode phoneFocus = FocusNode();

@@ -38,7 +38,7 @@ class CommonText extends StatelessWidget {
   const CommonText.extraBold(
       this.text, {
         this.size = 12,
-        this.color = primaryClr,
+        this.color = secondaryClr,
         this.textAlign,
         this.overflow,
         this.maxLines,

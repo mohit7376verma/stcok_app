@@ -22,6 +22,14 @@ class Assets {
   static const SvgGenImage imagesIcBack =
       SvgGenImage('assets/images/ic_back.svg');
 
+  /// File path: assets/images/ic_call.svg
+  static const SvgGenImage imagesIcCall =
+      SvgGenImage('assets/images/ic_call.svg');
+
+  /// File path: assets/images/ic_emogi.svg
+  static const SvgGenImage imagesIcEmogi =
+      SvgGenImage('assets/images/ic_emogi.svg');
+
   /// File path: assets/images/ic_eye.svg
   static const SvgGenImage imagesIcEye =
       SvgGenImage('assets/images/ic_eye.svg');
@@ -38,19 +46,31 @@ class Assets {
   static const SvgGenImage imagesIcNotification =
       SvgGenImage('assets/images/ic_notification.svg');
 
+  /// File path: assets/images/ic_pencil.svg
+  static const SvgGenImage imagesIcPencil =
+      SvgGenImage('assets/images/ic_pencil.svg');
+
   /// File path: assets/images/ic_search.svg
   static const SvgGenImage imagesIcSearch =
       SvgGenImage('assets/images/ic_search.svg');
+
+  /// File path: assets/images/ic_trash.svg
+  static const SvgGenImage imagesIcTrash =
+      SvgGenImage('assets/images/ic_trash.svg');
 
   /// List of all assets
   static List<dynamic> get values => [
         imagesAvatar,
         imagesIcBack,
+        imagesIcCall,
+        imagesIcEmogi,
         imagesIcEye,
         imagesIcEyeOff,
         imagesIcForward,
         imagesIcNotification,
-        imagesIcSearch
+        imagesIcPencil,
+        imagesIcSearch,
+        imagesIcTrash
       ];
 }
 

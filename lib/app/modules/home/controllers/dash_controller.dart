@@ -8,7 +8,8 @@ class DashController extends GetxController {
   PageController pageCtrl = PageController(initialPage: 0, keepPage: true);
   var scaffoldKey = GlobalObjectKey<ScaffoldState>(ScaffoldState());
 
-  final count = 0.obs;
+  TextEditingController searchController = TextEditingController();
+  final FocusNode searchFocus = FocusNode();
 
   @override
   void onInit() {
@@ -24,8 +25,6 @@ class DashController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 
   chatRefresh() {}
 
