@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:stock_app/app/modules/home/views/home_view.dart';
 import 'package:stock_app/app/modules/home/views/market_view.dart';
@@ -17,6 +18,18 @@ class DashboardView extends GetView<DashController> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(
+          statusBarColor: primaryClr,
+          systemNavigationBarColor: tertiaryClr,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.light,
+          systemNavigationBarDividerColor: tertiaryClr,
+          systemNavigationBarIconBrightness: Brightness.light,
+          systemNavigationBarContrastEnforced: false,
+          systemStatusBarContrastEnforced: false,
+        )
+    );
     return Obx(() {
       return Scaffold(
         key: controller.scaffoldKey,
@@ -28,8 +41,19 @@ class DashboardView extends GetView<DashController> {
             children: pages,
           ),
         ),
-        bottomNavigationBar: _bottomBar(context, controller.scaffoldKey),
-        drawer: Drawer(width: MediaQuery.sizeOf(context).width * .75, backgroundColor: onBackgroundClr, elevation: 0.0, child: const Center(child: MoreView())),
+        bottomNavigationBar: Container(
+          decoration: const BoxDecoration(
+              color: tertiaryClr,
+              borderRadius: BorderRadius.only(topLeft:Radius.circular(16), topRight: Radius.circular(16)),
+              ),
+            child: bottomNavigationBar(),
+            clipBehavior: Clip.hardEdge,
+        ),
+        drawer: Drawer(
+            width: MediaQuery.sizeOf(context).width * .75,
+            backgroundColor: onBackgroundClr,
+            elevation: 0.0,
+            child: const Center(child: MoreView())),
         drawerDragStartBehavior: DragStartBehavior.start,
         drawerEnableOpenDragGesture: true,
         onDrawerChanged: (bool state) {
@@ -43,13 +67,7 @@ class DashboardView extends GetView<DashController> {
   NavigationBar? _bottomBar(BuildContext context, GlobalObjectKey<ScaffoldState> scaffoldKey) {
     if (MediaQuery.sizeOf(context).width < 640) {
       return NavigationBar(
-        destinations: [
-          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Home"),
-          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Market"),
-          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Chat"),
-          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "News"),
-          navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "More"),
-        ],
+        destinations: [],
         onDestinationSelected: (int index) {
           if (index == 4) {
             scaffoldKey.currentState?.openDrawer();
@@ -71,21 +89,38 @@ class DashboardView extends GetView<DashController> {
     }
   }
 
-  NavigationDestination navItem(String icon, String activeIcon, String title) {
+  BottomNavigationBarItem navItem(String icon, String activeIcon, String title) {
     if (title.toLowerCase() == "more") {
-      return NavigationDestination(
-        icon: CommonText.semiBold(
-          title,
-          size: 12,
-        ),
-        label: title,
-      );
+      return BottomNavigationBarItem(icon: Container(), label: title,);
     } else {
-      return NavigationDestination(
-        icon: CommonText.semiBold(title, size: 12),
-        label: title,
-      );
+      return BottomNavigationBarItem(icon: Container(), label: title);
     }
+  }
+
+  BottomNavigationBar bottomNavigationBar() {
+    return BottomNavigationBar(
+      items: <BottomNavigationBarItem>[
+        navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Home"),
+        navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Market"),
+        navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "Chat"),
+        navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "News"),
+        navItem(Assets.imagesIcSearch, Assets.imagesIcSearch, "More"),
+      ],
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: tertiaryClr,
+      currentIndex: controller.currentIndex.value,
+      onTap: (index) {
+
+        if(index==4)
+          {
+            controller.scaffoldKey.currentState?.openDrawer();
+          }else
+            {
+              controller.onPageChanged(index);
+            }
+
+      },
+    );
   }
 }
 

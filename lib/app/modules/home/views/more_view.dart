@@ -13,7 +13,6 @@ import '../controllers/dash_controller.dart';
 
 class MoreView extends GetView<DashController> {
   const MoreView({super.key});
-
   @override
   Widget build(BuildContext context) {
     List<String> mList = [profile, aboutUs, contactUs, tutorial, setting, myStock, logout];
@@ -47,25 +46,21 @@ class MoreView extends GetView<DashController> {
     );
   }
 
-  Widget _singleItem(BuildContext context, String item, VoidCallback? onTap) {
-    return Stack(
-      children: [
-        Container(
-          clipBehavior: Clip.hardEdge,
-          decoration: carDecoration,
+Widget _singleItem(BuildContext context, String item, VoidCallback? onTap) {
+  return Stack(
+    children: [
+      Container(
+        clipBehavior: Clip.hardEdge,
+        decoration:carDecoration,
           child: InkWell(
             overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-            focusColor: Colors.transparent,
-            splashColor: neutralClr,
-            hoverColor: neutralClr,
-            highlightColor: neutralClr,
             onTap: onTap,
-            child: Row(
-              children: [
-                Expanded(
-                  child: CommonText.medium(item, size: 14, color: secondaryClr),
-                ),
-                const SquareSvgImageFromAsset(Assets.imagesIcForward, color: neutralClr, size: 20),
+          child: Row(
+            children: [
+              Expanded(
+                child: CommonText.medium(item, size: 14, color: secondaryClr),
+              ),
+              const SquareSvgImageFromAsset(Assets.imagesIcForward, color: tertiaryClr, size: 20),
               ],
             ).paddingAll(16),
           ),

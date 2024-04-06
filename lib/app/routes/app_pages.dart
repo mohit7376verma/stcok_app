@@ -23,6 +23,8 @@ import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/tutorial/bindings/tutorial_binding.dart';
 import '../modules/tutorial/views/tutorial_view.dart';
+import '../modules/stock_details/bindings/stock_details_binding.dart';
+import '../modules/stock_details/views/stock_details_view.dart';
 
 part 'app_routes.dart';
 
@@ -91,6 +93,11 @@ class AppPages {
       name: _Paths.TUTORIAL,
       page: () => const TutorialView(),
       binding: TutorialBinding(),
+    ),
+    GetPage(
+      name: _Paths.STOCK_DETAILS,
+      page: () => const StockDetailsView(),
+      binding: StockDetailsBinding(),
     ),
   ];
 }

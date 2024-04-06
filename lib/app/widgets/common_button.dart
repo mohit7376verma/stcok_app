@@ -21,7 +21,7 @@ class CommonButton extends StatelessWidget {
     this.child,
     this.mPadding = pad,
     this.textSize = 12.0,
-    this.labelColor = secondaryClr,
+    this.labelColor = onPrimaryClr,
     this.bgColor = tertiaryClr,
     this.isOutlineButton = false,
     Key? key,
@@ -66,7 +66,6 @@ class CommonButton extends StatelessWidget {
               foregroundColor: primaryClr,
               backgroundColor: Colors.transparent,
               side: BorderSide(color: labelColor, width: 2),
-              padding: mPadding ?? pad,
               shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
             ),
             child: Center(

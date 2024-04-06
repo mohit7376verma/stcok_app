@@ -77,7 +77,7 @@ class LoginView extends GetView<LoginController> {
                           alignment: Alignment.bottomRight,
                           child: InkWell(
                             onTap: () => Get.toNamed(Routes.FORGOT_PASSWORD),
-                            child: const CommonText.regular("Forgot Password?", size: 14),
+                            child: const CommonText.regular("Forgot Password?", size: 14).marginOnly(top: 8),
                           )).marginAll(4),
                       const SizedBox(
                         height: 32,

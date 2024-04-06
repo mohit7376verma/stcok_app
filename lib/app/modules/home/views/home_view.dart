@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stock_app/app/gen/assets.gen.dart';
+import 'package:stock_app/app/routes/app_pages.dart';
 import 'package:stock_app/app/theme/app_colors.dart';
 import 'package:stock_app/app/widgets/common_button.dart';
 import 'package:stock_app/app/widgets/common_text.dart';
@@ -29,9 +30,9 @@ class HomeView extends GetView<DashController> {
                 const Expanded(
                     child: CommonText.medium(
                   "Favorite Stocks",
-                  size: 18,
+                  size: 16,
                 )),
-                CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12, mPadding: EdgeInsets.all(6)),
+                CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12, mPadding: EdgeInsets.all(4)),
               ],
             ).marginOnly(left: 16, right: 16),
             Container(
@@ -42,7 +43,7 @@ class HomeView extends GetView<DashController> {
               ),
               child: favoriteStocks(context),
               height: MediaQuery.of(context).size.height * 0.23,
-            ).marginAll(8),
+            ).marginAll(4),
             Row(
               children: [
                 const Expanded(
@@ -67,7 +68,7 @@ class HomeView extends GetView<DashController> {
                       // boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]
                     ),
                     child: Expanded(child: myStocks(context)))
-                .marginAll(8)
+                .marginAll(4)
           ],
         ),
       ),
@@ -94,7 +95,7 @@ class HomeView extends GetView<DashController> {
               const Expanded(child: CommonText.medium("Current Value", size: 14, textAlign: TextAlign.center)),
             ],
           ).paddingAll(12).marginOnly(top: 8, bottom: 8),
-        ).marginOnly(left: 16, right: 16, bottom: 8, top: 8),
+        ).marginOnly(left: 12, right: 12, bottom: 4, top: 8),
       ],
     );
   }
@@ -149,42 +150,67 @@ class HomeView extends GetView<DashController> {
         shrinkWrap: true,
         itemCount: 8,
         itemBuilder: (context, index) {
-          return Container(
-            decoration: carDecoration,
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: tertiaryClr,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: SquareImageFromNetwork(
-                      imageUrl: defaultImage,
-                      fit: BoxFit.cover,
-                      size: 44,
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                  ).marginAll(2),
-                ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CommonText.semiBold(
-                      "Stocks Name",
-                      size: 14,
-                    ),
-                    CommonText.semiBold(
-                      "\$13.2342",
-                      size: 14,
-                    ),
-                  ],
-                ).marginOnly(left: 8)
-              ],
-            ).paddingAll(12),
-          ).paddingAll(8);
+          return InkWell(
+            focusColor: neutralClr,
+            child: Container(
+              decoration: carDecoration,
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 22,
+                    backgroundColor: tertiaryClr,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: SquareImageFromNetwork(
+                        imageUrl: defaultImage,
+                        fit: BoxFit.cover,
+                        size: 44,
+                      ),
+                      clipBehavior: Clip.hardEdge,
+                    ).marginAll(2),
+                  ),
+                  Expanded(
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CommonText.semiBold(
+                          "Stocks Name",
+                          size: 14,
+                        ),
+                        CommonText.semiBold(
+                          "description",
+                          size: 12,
+                          color: neutralClr,
+                        ),
+                      ],
+                    ).marginOnly(left: 8),
+                  ),
+                   const Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CommonText.semiBold(
+                        "\$13.2342",
+                        size: 14,
+                      ),
+                      CommonText.semiBold(
+                        "-0.3%",
+                        size: 12,
+                        color: errorClr,
+                      ),
+                    ],
+                  ).marginOnly(left: 8)
+                ],
+              ).paddingAll(12),
+            ).paddingAll(8),
+            onTap: (){
+             Get.toNamed(Routes.STOCK_DETAILS);
+            },
+          );
         });
   }
 
