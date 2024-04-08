@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../theme/app_colors.dart';
 import '../utils/constants.dart';
@@ -139,7 +141,8 @@ class CommonText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      borderRadius: const BorderRadius.all(Radius.circular(4)),
       onTap: onTap,
       child: Text(
         text,
@@ -157,7 +160,7 @@ class CommonText extends StatelessWidget {
             decoration: isUnderLine ? TextDecoration.underline : null,
             decorationThickness: 1,
             decorationColor: secondaryClr),
-      ),
+      ).paddingSymmetric(horizontal: 4,vertical: 2),
     );
     // return onTap != null ? GestureDetector(onTap: onTap, child: child) : child;
   }

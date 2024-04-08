@@ -43,7 +43,9 @@ class DashController extends GetxController {
     super.onClose();
   }
 
-  chatRefresh() {}
+  chatRefresh() async{
+
+  }
 
   onPageChanged(int index) {
     try {

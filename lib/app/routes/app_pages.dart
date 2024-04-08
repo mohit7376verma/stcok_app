@@ -19,12 +19,14 @@ import '../modules/profile/views/edit_profile_view_view.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/reset_password/bindings/reset_password_binding.dart';
+import '../modules/reset_password/views/reset_password_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
-import '../modules/tutorial/bindings/tutorial_binding.dart';
-import '../modules/tutorial/views/tutorial_view.dart';
 import '../modules/stock_details/bindings/stock_details_binding.dart';
 import '../modules/stock_details/views/stock_details_view.dart';
+import '../modules/tutorial/bindings/tutorial_binding.dart';
+import '../modules/tutorial/views/tutorial_view.dart';
 
 part 'app_routes.dart';
 
@@ -98,6 +100,11 @@ class AppPages {
       name: _Paths.STOCK_DETAILS,
       page: () => const StockDetailsView(),
       binding: StockDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESET_PASSWORD,
+      page: () => const ResetPasswordView(),
+      binding: ResetPasswordBinding(),
     ),
   ];
 }

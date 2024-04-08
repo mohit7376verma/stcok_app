@@ -94,7 +94,7 @@ class CommonTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (labelText.isNotEmpty) ...[
-          CommonText.bold(labelText, size: 14, color: onBackgroundClr),
+          CommonText.bold(labelText, size: 14, color: secondaryClr),
           const SizedBox(height: 12),
         ],
         TextFormField(

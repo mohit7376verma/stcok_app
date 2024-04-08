@@ -22,7 +22,7 @@ class NewsView extends GetView<DashController> {
           hasBackIcon: false,
         ),
         body: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Column(
               children: [
                 Flexible(
@@ -40,67 +40,74 @@ class NewsView extends GetView<DashController> {
   }
 
   Widget _singleTutorialItem(TutorialModel item, int index, BuildContext context, VoidCallback callback) {
-    return InkWell(
-     borderRadius: BorderRadius.circular(8),
-      onTap: callback,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: carDecoration,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Container(
-              decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * .25,
-              clipBehavior: Clip.hardEdge,
-              child: const SquareImageFromNetwork(
-                imageUrl: defaultImage,
-                fit: BoxFit.cover,
-              ),
+    return Container(
+      padding: const EdgeInsets.all(2),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      decoration: carDecoration,
+      child: Material(
+        color: cardClr,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: callback,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(4))),
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * .25,
+                  clipBehavior: Clip.hardEdge,
+                  child: const SquareImageFromNetwork(
+                    imageUrl: defaultImage,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: CommonText.regular(
+                    "News Title",
+                    maxLines: 2,
+                    size: 14,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                CommonText.regular(
+                  item.data,
+                  color: neutralClr,
+                  maxLines: item.isSelected ? null : 2,
+                  overflow: item.isSelected ? null : TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                CommonText(
+                  item.isSelected ? "Read Less" : "Read More",
+                  size: 12,
+                  onTap: (){
+                    controller.newsList.forEachIndexed((element, innerIndex) {
+                      if (innerIndex == index) {
+                        element.isSelected = !element.isSelected;
+                      } else {
+                        element.isSelected = false;
+                      }
+                    });
+                    controller.newsList.refresh();
+                  },
+                  color: item.isSelected ? warningClr : tertiaryClr,
+                ).paddingSymmetric(vertical: 2, horizontal: 4),
+              ],
             ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Align(
-              alignment: Alignment.topLeft,
-              child: CommonText.regular(
-                "News Title",
-                maxLines: 2,
-                size: 14,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            CommonText.regular(
-              item.data,
-              color: neutralClr,
-              maxLines: item.isSelected ? null : 2,
-              overflow: item.isSelected ? null : TextOverflow.ellipsis,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            CommonText(
-              item.isSelected ? "Read Less" : "Read More",
-              onTap: () {
-                controller.newsList.forEachIndexed((element, innerIndex) {
-                  if (innerIndex == index) {
-                    element.isSelected = !element.isSelected;
-                  } else {
-                    element.isSelected = false;
-                  }
-                });
-                controller.newsList.refresh();
-              },
-              size: 12,
-              color: item.isSelected ? warningClr : tertiaryClr,
-            ),
-          ],
+          ),
         ),
       ),
-    ).marginSymmetric(vertical: 8);
+    );
   }
 }

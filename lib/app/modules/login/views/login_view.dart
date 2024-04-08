@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:stock_app/app/widgets/common_text_field.dart';
 import 'package:stock_app/app/widgets/common_text.dart';
+import 'package:stock_app/app/widgets/common_text_field.dart';
+import 'package:stock_app/app/widgets/widgets.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../routes/app_pages.dart';
@@ -76,8 +77,11 @@ class LoginView extends GetView<LoginController> {
                       Align(
                           alignment: Alignment.bottomRight,
                           child: InkWell(
-                            onTap: () => Get.toNamed(Routes.FORGOT_PASSWORD),
-                            child: const CommonText.regular("Forgot Password?", size: 14).marginOnly(top: 8),
+                            child: CommonText.regular(
+                              "Forgot Password?",
+                              size: 14,
+                              onTap: () => Get.toNamed(Routes.FORGOT_PASSWORD),
+                            ).marginOnly(top: 8),
                           )).marginAll(4),
                       const SizedBox(
                         height: 32,
@@ -119,10 +123,9 @@ class LoginView extends GetView<LoginController> {
                           const CommonText.regular("New to Stock?", color: secondaryClr, size: 16),
                           const SizedBox(width: 4),
                           InkWell(
-                            child: const CommonText.bold("Sign up", color: secondaryClr, size: 16),
-                            onTap: () {
+                            child: CommonText.bold("Sign up", color: secondaryClr, size: 16, onTap: () {
                               Get.toNamed(Routes.REGISTER);
-                            },
+                            }),
                           )
                         ],
                       ),
@@ -135,8 +138,7 @@ class LoginView extends GetView<LoginController> {
                           const CommonText.regular("Login As", color: secondaryClr, size: 16),
                           const SizedBox(width: 4),
                           InkWell(
-                            child: const CommonText.bold("Guest", color: secondaryClr, size: 16),
-                            onTap: () {},
+                            child: CommonText.bold("Guest", color: secondaryClr, size: 16, onTap: () {}),
                           )
                         ],
                       ),

@@ -27,6 +27,8 @@ class MessageController extends GetxController {
       receiverId = Get.arguments["receiverId"];
     }
 
+    /*chatList.add(ChatModel(senderId: "", receiverId: "", msg: "Hi", receiverName: "", receiverImage: "", senderName: "", senderImage: "", type: "text", timeStamp: "", pushKey: ""));
+    chatList.add(ChatModel(senderId: "", receiverId: "", msg: "Hello", receiverName: "", receiverImage: "", senderName: "", senderImage: "", type: "text", timeStamp: "", pushKey: ""));*/
     Alert.log(runtimeType.toString(), "NAME => ${receiverName.value}");
     Alert.log(runtimeType.toString(), "IMAGE => ${receiverImage.value}");
     Alert.log(runtimeType.toString(), "RECEIVER ID => $receiverId");

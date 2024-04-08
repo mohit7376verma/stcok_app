@@ -13,6 +13,7 @@ import '../controllers/dash_controller.dart';
 
 class MoreView extends GetView<DashController> {
   const MoreView({super.key});
+
   @override
   Widget build(BuildContext context) {
     List<String> mList = [profile, aboutUs, contactUs, tutorial, setting, myStock, logout];
@@ -25,7 +26,7 @@ class MoreView extends GetView<DashController> {
       backgroundColor: primaryClr,
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.only(bottom: 16),
+          margin: const EdgeInsets.only(bottom: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -46,23 +47,26 @@ class MoreView extends GetView<DashController> {
     );
   }
 
-Widget _singleItem(BuildContext context, String item, VoidCallback? onTap) {
-  return Stack(
-    children: [
-      Container(
-        clipBehavior: Clip.hardEdge,
-        decoration:carDecoration,
-          child: InkWell(
-            overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-            onTap: onTap,
-          child: Row(
-            children: [
-              Expanded(
-                child: CommonText.medium(item, size: 14, color: secondaryClr),
-              ),
-              const SquareSvgImageFromAsset(Assets.imagesIcForward, color: tertiaryClr, size: 20),
-              ],
-            ).paddingAll(16),
+  Widget _singleItem(BuildContext context, String item, VoidCallback? onTap) {
+    return Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(2),
+          decoration: carDecoration,
+          child: Material(
+            color: cardClr,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(8),
+              onTap: onTap,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CommonText.medium(item, size: 14, color: secondaryClr),
+                  ),
+                  const SquareSvgImageFromAsset(Assets.imagesIcForward, color: tertiaryClr, size: 20),
+                ],
+              ).paddingAll(14),
+            ),
           ),
         ).marginOnly(left: 16, right: 16, bottom: 8, top: 8),
       ],

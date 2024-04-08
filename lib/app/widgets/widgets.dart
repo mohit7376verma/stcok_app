@@ -14,9 +14,9 @@ Widget pageLoader(BuildContext context) {
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(width: 12, height: 12, child: CircularProgressIndicator.adaptive(strokeWidth: 1.5)),
+          SizedBox(width: 12, height: 12, child: CircularProgressIndicator.adaptive(strokeWidth: 1.5,backgroundColor: tertiaryClr,)),
           SizedBox(width: 16),
-          CommonText("Loading...", color: onBackgroundClr)
+          CommonText("Loading...", color: secondaryClr)
         ],
       ),
     ).paddingOnly(bottom: MediaQuery.of(context).padding.bottom, top: 4),
@@ -127,3 +127,25 @@ void showSheet({
         ]);
       });
 }
+
+//App Switch
+Widget appSwitch({required bool value, ValueChanged<bool>? onChanged}) => Switch(
+  value: value,
+  onChanged: onChanged,
+  inactiveTrackColor: Colors.grey.shade200,
+  activeTrackColor: tertiaryClr,
+  thumbColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+    if (states.contains(MaterialState.selected)) {
+      return onPrimaryClr;
+    } else {
+      return Colors.grey.shade500;
+    }
+  }),
+  trackOutlineColor: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+    if (states.contains(MaterialState.selected)) {
+      return secondaryClr;
+    } else {
+      return Colors.grey.shade500;
+    }
+  }),
+);

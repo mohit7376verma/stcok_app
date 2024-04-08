@@ -17,6 +17,7 @@ abstract class Routes {
   static const CONTACT_US = _Paths.CONTACT_US;
   static const MY_STOCK = _Paths.MY_STOCK;
   static const TUTORIAL = _Paths.TUTORIAL;
+  static const RESET_PASSWORD = _Paths.RESET_PASSWORD;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const MY_STOCK = '/my-stock';
   static const TUTORIAL = '/tutorial';
   static const STOCK_DETAILS = '/stock-details';
+  static const RESET_PASSWORD = '/reset-password';
 }

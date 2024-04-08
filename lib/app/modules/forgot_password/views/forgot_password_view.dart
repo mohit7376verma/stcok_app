@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:stock_app/app/routes/app_pages.dart';
 import 'package:stock_app/app/theme/app_colors.dart';
 import 'package:stock_app/app/widgets/common_app_bar.dart';
 import 'package:stock_app/app/widgets/common_button.dart';
 
 import '../../../utils/validator.dart';
-import '../../../widgets/common_text_field.dart';
 import '../../../widgets/common_text.dart';
+import '../../../widgets/common_text_field.dart';
 import '../controllers/forgot_password_controller.dart';
 
 class ForgotPasswordView extends GetView<ForgotPasswordController> {
@@ -19,10 +20,10 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
       appBar: const CommonAppBar(title: "Forgot Password"),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(32),
           child: Column(
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               /*const CommonText.bold(
                 "Stock",
                 color: secondaryClr,
@@ -44,7 +45,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
         children: [
           CommonText.bold(
             "Back to Login",
-            color: primaryClr,
+            color: secondaryClr,
             size: 16,
             onTap: () {
               Get.back();
@@ -82,7 +83,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
       ),
       const SizedBox(height: 16),
       CommonButton(onPressed: () => {controller.forgotOtpStatus.value = false}, label: "Submit"),
-    ]).paddingOnly(left: 16, right: 16, bottom: 16);
+    ]);
   }
 
   Widget codeView(BuildContext context) {
@@ -110,11 +111,23 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
       Row(
         children: [
           Expanded(
-            child: CommonButton.outline(onPressed: () => controller.forgotOtpStatus.value = true, label: "Previous Step").paddingOnly(right: 8),
+            child: OutlinedButton(
+              onPressed: () => controller.forgotOtpStatus.value = true,
+              style: OutlinedButton.styleFrom(
+                foregroundColor: primaryClr,
+                backgroundColor: Colors.transparent,
+                side: const BorderSide(color: tertiaryClr, width: 2),
+                minimumSize: const Size(double.infinity, 50),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+              ),
+              child: const Center(
+                child: CommonText.bold("Previous Step", size: 14, color: tertiaryClr, textAlign: TextAlign.center),
+              ),
+            ).paddingOnly(right: 8),
           ),
-          Expanded(child: CommonButton(onPressed: () => {}, label: "Submit").paddingOnly(left: 8)),
+          Expanded(child: CommonButton(onPressed: () => {Get.toNamed(Routes.RESET_PASSWORD)}, label: "Submit").paddingOnly(left: 8)),
         ],
       ),
-    ]).paddingOnly(left: 16, right: 16, bottom: 16);
+    ]);
   }
 }

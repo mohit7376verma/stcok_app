@@ -49,7 +49,7 @@ class EditProfileViewView extends GetView<ProfileController> {
                         width: 32,
                         height: 32,
                         child: FloatingActionButton.small(
-                          backgroundColor: secondaryClr,
+                          backgroundColor: tertiaryClr,
                           elevation: 0,
                           heroTag: null,
                           focusElevation: 0.0,
@@ -57,7 +57,7 @@ class EditProfileViewView extends GetView<ProfileController> {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
                           child: const Icon(
                             Icons.edit,
-                            color: primaryClr,
+                            color: secondaryClr,
                             size: 20,
                           ),
                           onPressed: () async {

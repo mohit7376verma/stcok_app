@@ -6,7 +6,6 @@ import 'package:stock_app/app/modules/home/views/home_view.dart';
 import 'package:stock_app/app/modules/home/views/market_view.dart';
 import 'package:stock_app/app/modules/home/views/more_view.dart';
 import 'package:stock_app/app/modules/home/views/news_view.dart';
-import 'package:stock_app/app/widgets/common_text.dart';
 import 'package:stock_app/generated/assets.dart';
 
 import '../../../theme/app_colors.dart';
@@ -18,18 +17,16 @@ class DashboardView extends GetView<DashController> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(
-          statusBarColor: primaryClr,
-          systemNavigationBarColor: tertiaryClr,
-          statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.light,
-          systemNavigationBarDividerColor: tertiaryClr,
-          systemNavigationBarIconBrightness: Brightness.light,
-          systemNavigationBarContrastEnforced: false,
-          systemStatusBarContrastEnforced: false,
-        )
-    );
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: primaryClr,
+      systemNavigationBarColor: tertiaryClr,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+      systemNavigationBarDividerColor: tertiaryClr,
+      systemNavigationBarIconBrightness: Brightness.light,
+      systemNavigationBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: false,
+    ));
     return Obx(() {
       return Scaffold(
         key: controller.scaffoldKey,
@@ -43,17 +40,13 @@ class DashboardView extends GetView<DashController> {
         ),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
-              color: tertiaryClr,
-              borderRadius: BorderRadius.only(topLeft:Radius.circular(16), topRight: Radius.circular(16)),
-              ),
-            child: bottomNavigationBar(),
-            clipBehavior: Clip.hardEdge,
+            color: tertiaryClr,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+          ),
+          clipBehavior: Clip.hardEdge,
+          child: bottomNavigationBar(),
         ),
-        drawer: Drawer(
-            width: MediaQuery.sizeOf(context).width * .75,
-            backgroundColor: onBackgroundClr,
-            elevation: 0.0,
-            child: const Center(child: MoreView())),
+        drawer: Drawer(width: MediaQuery.sizeOf(context).width * .75, backgroundColor: onBackgroundClr, elevation: 0.0, child: const Center(child: MoreView())),
         drawerDragStartBehavior: DragStartBehavior.start,
         drawerEnableOpenDragGesture: true,
         onDrawerChanged: (bool state) {
@@ -91,7 +84,10 @@ class DashboardView extends GetView<DashController> {
 
   BottomNavigationBarItem navItem(String icon, String activeIcon, String title) {
     if (title.toLowerCase() == "more") {
-      return BottomNavigationBarItem(icon: Container(), label: title,);
+      return BottomNavigationBarItem(
+        icon: Container(),
+        label: title,
+      );
     } else {
       return BottomNavigationBarItem(icon: Container(), label: title);
     }
@@ -110,15 +106,11 @@ class DashboardView extends GetView<DashController> {
       backgroundColor: tertiaryClr,
       currentIndex: controller.currentIndex.value,
       onTap: (index) {
-
-        if(index==4)
-          {
-            controller.scaffoldKey.currentState?.openDrawer();
-          }else
-            {
-              controller.onPageChanged(index);
-            }
-
+        if (index == 4) {
+          controller.scaffoldKey.currentState?.openDrawer();
+        } else {
+          controller.onPageChanged(index);
+        }
       },
     );
   }

@@ -51,7 +51,7 @@ const darkColorScheme = ColorScheme(
 
 var carDecoration=BoxDecoration(
   color: cardClr,
-  borderRadius: BorderRadius.all(Radius.circular(8)),
+  borderRadius: const BorderRadius.all(Radius.circular(8)),
   border: Border.all(
     color: outlineClr,
     width: 2,

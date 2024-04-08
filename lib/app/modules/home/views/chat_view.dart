@@ -90,83 +90,88 @@ class ChatView extends GetView<DashController> {
 
 Widget _singleItemView(ChatModel model, BuildContext context) {
   return Container(
-    clipBehavior: Clip.hardEdge,
+    padding: const EdgeInsets.all(2),
+    margin: const EdgeInsets.symmetric( vertical: 8),
     decoration: carDecoration,
-    child: InkWell(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            clipBehavior: Clip.antiAlias,
-            decoration: const BoxDecoration(shape: BoxShape.circle),
-            // child: SquareImageFromNetwork(imageUrl: model.senderId == Prefs().userId() ? model.receiverImage : model.senderImage),
-            child: const SquareImageFromAsset(
-              Assets.imagesAvatar,
-              fit: BoxFit.cover,
+    child: Material(
+      color: cardClr,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              clipBehavior: Clip.antiAlias,
+              decoration: const BoxDecoration(shape: BoxShape.circle),
+              // child: SquareImageFromNetwork(imageUrl: model.senderId == Prefs().userId() ? model.receiverImage : model.senderImage),
+              child: const SquareImageFromAsset(
+                Assets.imagesAvatar,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CommonText.bold(model.senderId == Prefs().userId() ? model.receiverName : model.senderName, size: 16),
+                  CommonText.medium(
+                    model.msg,
+                    maxLines: 1,
+                    size: 14,
+                    overflow: TextOverflow.ellipsis,
+                    color: secondaryClr.withOpacity(0.7),
+                  ),
+                ],
+              ),
+            ),
+            /*Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                CommonText.bold(model.senderId == Prefs().userId() ? model.receiverName : model.senderName, size: 16),
-                CommonText.medium(
-                  model.msg,
-                  maxLines: 1,
-                  size: 14,
-                  overflow: TextOverflow.ellipsis,
-                  color: secondaryClr.withOpacity(0.7),
-                ),
+                CommonText.semiBold(formatDate(model.timeStamp))
+                    .marginOnly(bottom: model.unReadCount != null && model.unReadCount.toString().toInt() > 0 ? 8 : 0),
+                Visibility(
+                  visible: model.unReadCount != null && model.unReadCount.toString().toInt() > 0 ? true : false,
+                  child: Container(
+                    height: 28,
+                    width: 28,
+                    alignment: Alignment.center,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      color: secondaryClr,
+                      borderRadius: BorderRadius.circular(100),
+                      boxShadow: [BoxShadow(color: onBackgroundClr.withOpacity(0.05), blurRadius: 4)],
+                    ),
+                    child: CommonText.bold(
+                      (model.unReadCount ?? 0) >= 100 ? "99+" : model.unReadCount.toString(),
+                      textAlign: TextAlign.center,
+                      color: onPrimaryClr,
+                      size: 10,
+                    ),
+                  ),
+                )
               ],
-            ),
-          ),
-          /*Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              CommonText.semiBold(formatDate(model.timeStamp))
-                  .marginOnly(bottom: model.unReadCount != null && model.unReadCount.toString().toInt() > 0 ? 8 : 0),
-              Visibility(
-                visible: model.unReadCount != null && model.unReadCount.toString().toInt() > 0 ? true : false,
-                child: Container(
-                  height: 28,
-                  width: 28,
-                  alignment: Alignment.center,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    color: secondaryClr,
-                    borderRadius: BorderRadius.circular(100),
-                    boxShadow: [BoxShadow(color: onBackgroundClr.withOpacity(0.05), blurRadius: 4)],
-                  ),
-                  child: CommonText.bold(
-                    (model.unReadCount ?? 0) >= 100 ? "99+" : model.unReadCount.toString(),
-                    textAlign: TextAlign.center,
-                    color: onPrimaryClr,
-                    size: 10,
-                  ),
-                ),
-              )
-            ],
-          )*/
-        ],
-      ).paddingAll(12),
-      onTap: () {
-        var receiverId = "";
-        var receiverName = "";
-        var receiverImg = "";
-        if (Prefs().userId() == model.senderId) {
-          receiverId = model.receiverId;
-          receiverName = model.receiverName;
-          receiverImg = model.receiverImage;
-        } else {
-          receiverId = model.senderId;
-          receiverName = model.senderName;
-          receiverImg = model.senderImage;
-        }
-        Get.toNamed(Routes.MESSAGE, arguments: {"name": receiverName, "receiverId": receiverId, "img": receiverImg});
-      },
+            )*/
+          ],
+        ).paddingAll(10),
+        onTap: () {
+          var receiverId = "";
+          var receiverName = "";
+          var receiverImg = "";
+          if (Prefs().userId() == model.senderId) {
+            receiverId = model.receiverId;
+            receiverName = model.receiverName;
+            receiverImg = model.receiverImage;
+          } else {
+            receiverId = model.senderId;
+            receiverName = model.senderName;
+            receiverImg = model.senderImage;
+          }
+          Get.toNamed(Routes.MESSAGE, arguments: {"name": receiverName, "receiverId": receiverId, "img": receiverImg});
+        },
+      ),
     ),
-  ).marginOnly(top: 8, bottom: 8);
+  );
 }

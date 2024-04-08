@@ -5,8 +5,8 @@ import 'package:stock_app/app/widgets/common_text.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../theme/app_colors.dart';
 import '../../../utils/validator.dart';
-import '../../../widgets/common_text_field.dart';
 import '../../../widgets/common_button.dart';
+import '../../../widgets/common_text_field.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
@@ -171,10 +171,9 @@ class RegisterView extends GetView<RegisterController> {
                             const CommonText.regular("Already have a Account?", color: secondaryClr, size: 16),
                             const SizedBox(width: 4),
                             InkWell(
-                              child: const CommonText.bold("Login", color: secondaryClr, size: 16),
-                              onTap: () {
+                              child: CommonText.bold("Login", color: secondaryClr, size: 16, onTap: () {
                                 Get.back();
-                              },
+                              }),
                             )
                           ],
                         ),

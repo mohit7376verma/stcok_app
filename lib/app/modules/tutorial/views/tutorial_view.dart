@@ -37,19 +37,20 @@ class TutorialView extends GetView<TutorialController> {
   }
 
   Widget _singleTutorialItem(TutorialModel item, int index, BuildContext context, VoidCallback callback) {
-    return GestureDetector(
-        onTap: () {
-          callback();
-        },
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.only(top: 8, bottom: 8),
-          decoration: carDecoration,
+    return Container(
+      decoration: carDecoration,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.all(2),
+      child: Material(
+        color: cardClr,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: callback,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
-                decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8))),
+                decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(4))),
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * .25,
                 clipBehavior: Clip.hardEdge,
@@ -82,9 +83,11 @@ class TutorialView extends GetView<TutorialController> {
                   controller.tutorialList.refresh();
                 },
                 color: item.isSelected ? warningClr : tertiaryClr,
-              ),
+              ).paddingSymmetric(vertical: 2, horizontal: 4),
             ],
-          ),
-        ));
+          ).paddingAll(10),
+        ),
+      ),
+    );
   }
 }

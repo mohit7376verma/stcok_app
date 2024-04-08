@@ -20,25 +20,32 @@ class MyStockView extends GetView<MyStockController> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(
-            children: [myStocks(context)],
+            children: [
+              myStocks(context, () {
+                Get.toNamed(Routes.STOCK_DETAILS);
+              })
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget myStocks(BuildContext context) {
+  Widget myStocks(BuildContext context, VoidCallback callback) {
     return ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: 8,
         itemBuilder: (context, index) {
-          return Material(
-            clipBehavior: Clip.hardEdge,
-            child: InkWell(
-              overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-              child: Container(
-                decoration: carDecoration,
+          return Container(
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            padding: const EdgeInsets.all(2),
+            decoration: carDecoration,
+            child: Material(
+              color: cardClr,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(8),
+                onTap: callback,
                 child: Row(
                   children: [
                     CircleAvatar(
@@ -91,10 +98,7 @@ class MyStockView extends GetView<MyStockController> {
                     ).marginOnly(left: 8)
                   ],
                 ).paddingAll(12),
-              ).paddingAll(8),
-              onTap: () {
-                Get.toNamed(Routes.STOCK_DETAILS);
-              },
+              ),
             ),
           );
         });

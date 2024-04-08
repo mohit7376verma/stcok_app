@@ -38,59 +38,67 @@ class MarketView extends GetView<DashController> {
               ),
               hintText: "Search Stock ...",
             ).paddingOnly(bottom: 8),
-            Expanded(child: marketStocks(context))
+            Expanded(child: marketStocks(context, () {}))
           ],
         ),
       ),
     );
   }
 
-  Widget marketStocks(BuildContext context) {
+  Widget marketStocks(BuildContext context, VoidCallback callback) {
     return ListView.builder(
         shrinkWrap: true,
         itemCount: 20,
         itemBuilder: (context, index) {
           return Container(
+            padding: const EdgeInsets.all(2),
             decoration: carDecoration,
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: tertiaryClr,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
+            child: Material(
+              color: cardClr,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(8),
+                onTap: callback,
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 22,
+                      backgroundColor: tertiaryClr,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        child: const SquareImageFromNetwork(
+                          imageUrl: defaultImage,
+                          fit: BoxFit.cover,
+                          size: 44,
+                        ),
+                      ).marginAll(2),
                     ),
-                    clipBehavior: Clip.hardEdge,
-                    child: const SquareImageFromNetwork(
-                      imageUrl: defaultImage,
-                      fit: BoxFit.cover,
-                      size: 44,
+                    Expanded(
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CommonText.semiBold(
+                            "Stocks Name",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            size: 14,
+                          ),
+                          CommonText.semiBold(
+                            "\$13.2342",
+                            size: 14,
+                            color: warningClr,
+                          ),
+                        ],
+                      ).marginOnly(left: 8),
                     ),
-                  ).marginAll(2),
-                ),
-                Expanded(
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CommonText.semiBold(
-                        "Stocks Name",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        size: 14,
-                      ),
-                      CommonText.semiBold(
-                        "\$13.2342",
-                        size: 14,
-                        color: warningClr,
-                      ),
-                    ],
-                  ).marginOnly(left: 8),
-                ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_border_outlined))
-              ],
-            ).paddingAll(12),
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_border_outlined))
+                  ],
+                ).paddingAll(10),
+              ),
+            ),
           ).paddingOnly(top: 8, bottom: 8);
         });
   }

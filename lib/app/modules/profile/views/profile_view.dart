@@ -101,44 +101,39 @@ class ProfileView extends GetView<ProfileController> {
 
   Widget items(String image, String title, BuildContext context, VoidCallback onPressed) {
     return Container(
-      clipBehavior: Clip.hardEdge,
-      decoration: const BoxDecoration(
+      padding: const EdgeInsets.all(2),
+      decoration: carDecoration,
+      child: Material(
         color: cardClr,
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-        border: Border(
-            top: BorderSide(color: outlineClr),
-            left: BorderSide(color: outlineClr),
-            right: BorderSide(color: outlineClr),
-            bottom: BorderSide(color: outlineClr)),
-      ),
-      child: InkWell(
-        overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-        onTap: onPressed,
-        child: Container(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(color: primaryClr, borderRadius: BorderRadius.circular(6)),
-                child: title == "My Cards"
-                    ? const Icon(
-                        Icons.credit_card,
-                        size: 20,
-                        color: secondaryClr,
-                      )
-                    : title == "Add Credits"
-                        ? const Icon(
-                            Icons.add_card,
-                            size: 20,
-                            color: secondaryClr,
-                          )
-                        : SquareSvgImageFromAsset(image, color: Colors.white).paddingAll(6),
-              ).marginOnly(right: 16),
-              Expanded(child: CommonText.extraBold(title, size: 14)),
-              const SquareSvgImageFromAsset(Assets.imagesIcForward, color: secondaryClr),
-            ],
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: onPressed,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(color: primaryClr, borderRadius: BorderRadius.circular(6)),
+                  child: title == "My Cards"
+                      ? const Icon(
+                          Icons.credit_card,
+                          size: 20,
+                          color: secondaryClr,
+                        )
+                      : title == "Add Credits"
+                          ? const Icon(
+                              Icons.add_card,
+                              size: 20,
+                              color: secondaryClr,
+                            )
+                          : SquareSvgImageFromAsset(image, color: Colors.white).paddingAll(6),
+                ).marginOnly(right: 16),
+                Expanded(child: CommonText.extraBold(title, size: 14)),
+                const SquareSvgImageFromAsset(Assets.imagesIcForward, color: tertiaryClr),
+              ],
+            ),
           ),
         ),
       ),
