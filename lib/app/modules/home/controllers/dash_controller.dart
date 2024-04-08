@@ -7,6 +7,7 @@ import '../../../utils/constants.dart';
 
 class DashController extends GetxController {
   RxInt currentIndex = 0.obs;
+  RxInt drawerOpenIndex = 0.obs;
   late PersistentTabController persistantController;
   var isDrawerOpen = false.obs;
 

@@ -13,7 +13,7 @@ class CommonButton extends StatelessWidget {
   final Color? bgColor;
   final bool isOutlineButton;
 
-  static const pad = EdgeInsets.all(16);
+  static const pad = EdgeInsets.all(0);
 
   const CommonButton({
     required this.onPressed,
@@ -64,6 +64,7 @@ class CommonButton extends StatelessWidget {
             onPressed: onPressed,
             style: OutlinedButton.styleFrom(
               foregroundColor: primaryClr,
+              // padding: mPadding?? pad,
               backgroundColor: Colors.transparent,
               side: BorderSide(color: labelColor, width: 2),
               shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),

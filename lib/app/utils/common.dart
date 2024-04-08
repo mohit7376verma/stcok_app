@@ -1,8 +1,24 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+
+import '../theme/app_colors.dart';
+
+SystemUiOverlayStyle systemStyle() {
+  return const SystemUiOverlayStyle(
+    statusBarColor: primaryClr,
+    systemNavigationBarColor: primaryClr,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.light,
+    systemNavigationBarDividerColor: primaryClr,
+    systemNavigationBarIconBrightness: Brightness.dark,
+    systemNavigationBarContrastEnforced: false,
+    systemStatusBarContrastEnforced: false,
+  );
+}
 
 Future<String> tempDirectory() async {
   final directory = await path_provider.getTemporaryDirectory();
@@ -10,7 +26,8 @@ Future<String> tempDirectory() async {
 }
 
 Future<String> downloadDirectory() async {
-  final directory = Platform.isAndroid ? await path_provider.getExternalStorageDirectory() : await path_provider.getApplicationDocumentsDirectory();
+  final directory =
+      Platform.isAndroid ? await path_provider.getExternalStorageDirectory() : await path_provider.getApplicationDocumentsDirectory();
   return _checkAndCreateDir(directory!);
 }
 

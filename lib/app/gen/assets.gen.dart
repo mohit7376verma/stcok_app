@@ -70,6 +70,13 @@ class Assets {
   static const SvgGenImage imagesIcTrash =
       SvgGenImage('assets/images/ic_trash.svg');
 
+  /// File path: assets/images/market_48.svg
+  static const SvgGenImage imagesMarket48 =
+      SvgGenImage('assets/images/market_48.svg');
+
+  /// File path: assets/images/news.svg
+  static const SvgGenImage imagesNews = SvgGenImage('assets/images/news.svg');
+
   /// List of all assets
   static List<dynamic> get values => [
         imagesAvatar,
@@ -85,7 +92,9 @@ class Assets {
         imagesIcPencil,
         imagesIcPerson,
         imagesIcSearch,
-        imagesIcTrash
+        imagesIcTrash,
+        imagesMarket48,
+        imagesNews
       ];
 }
 

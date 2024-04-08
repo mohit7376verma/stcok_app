@@ -7,72 +7,70 @@ import 'package:stock_app/app/widgets/common_button.dart';
 import 'package:stock_app/app/widgets/common_text.dart';
 import 'package:stock_app/app/widgets/image.dart';
 
-import '../../../routes/app_pages.dart';
 import '../../../utils/constants.dart';
 import '../controllers/dash_controller.dart';
 
 class HomeView extends GetView<DashController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        color: primaryClr,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            appBar(),
-            topHeaderSection(context),
-            Row(
-              children: [
-                const Expanded(
-                    child: CommonText.medium(
-                  "Favorite Stocks",
-                  size: 16,
-                )),
-                CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12, mPadding: EdgeInsets.all(4)),
-              ],
-            ).marginOnly(left: 16, right: 16),
-            Container(
-              decoration: const BoxDecoration(
-                color: primaryClr,
-                // borderRadius: BorderRadius.all(Radius.circular(12)),
-                // boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]
-              ),
-              child: favoriteStocks(context),
-              height: MediaQuery.of(context).size.height * 0.23,
-            ).marginAll(4),
-            Row(
-              children: [
-                const Expanded(
-                    child: CommonText.medium(
-                  "My Stocks",
-                  size: 18,
-                )),
-                CommonButton.outline(
-                  onPressed: () {
-                    Get.toNamed(Routes.MY_STOCK);
-                  },
-                  label: "View All",
-                  textSize: 12,
-                  mPadding: EdgeInsets.all(4),
+      body: SingleChildScrollView(
+        child: Container(
+          color: primaryClr,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              appBar(),
+              topHeaderSection(context),
+              Row(
+                children: [
+                  const Expanded(
+                      child: CommonText.medium(
+                    "Favorite Stocks",
+                    size: 16,
+                  )),
+                  CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12),
+                ],
+              ).marginOnly(left: 16, right: 16),
+              Container(
+                decoration: const BoxDecoration(
+                  color: primaryClr,
+                  // borderRadius: BorderRadius.all(Radius.circular(12)),
+                  // boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]
                 ),
-              ],
-            ).marginOnly(left: 16, right: 16),
-            Container(
-                    decoration: const BoxDecoration(
-                      color: primaryClr,
-                      // borderRadius: BorderRadius.all(Radius.circular(12)),
-                      // boxShadow: [BoxShadow(color: shadowClr, blurRadius: 4.0)]
-                    ),
-                    child: Expanded(child: myStocks(context)))
-                .marginAll(4)
-          ],
+                height: MediaQuery.of(context).size.height * 0.23,
+                child: favoriteStocks(context),
+              ).marginAll(4),
+              Row(
+                children: [
+                  const Expanded(
+                      child: CommonText.medium(
+                    "My Stocks",
+                    size: 18,
+                  )),
+                  CommonButton.outline(
+                    onPressed: () {
+                      Get.toNamed(Routes.MY_STOCK);
+                    },
+                    label: "View All",
+                    textSize: 12,
+                    mPadding: const EdgeInsets.all(4),
+                  ),
+                ],
+              ).marginOnly(left: 16, right: 16),
+              Container(
+                      decoration: const BoxDecoration(
+                        color: primaryClr,
+                      ),
+                      child: Expanded(child: myStocks(context)))
+                  .marginAll(4)
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   Widget topHeaderSection(BuildContext context) {
@@ -110,16 +108,16 @@ class HomeView extends GetView<DashController> {
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
-                child: SquareImageFromNetwork(
+                clipBehavior: Clip.hardEdge,
+                child: const SquareImageFromNetwork(
                   imageUrl: defaultImage,
                   fit: BoxFit.cover,
                   size: 40,
                 ),
-                clipBehavior: Clip.hardEdge,
               ).marginAll(2),
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,16 +158,16 @@ class HomeView extends GetView<DashController> {
                     radius: 22,
                     backgroundColor: tertiaryClr,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: SquareImageFromNetwork(
+                      clipBehavior: Clip.hardEdge,
+                      child: const SquareImageFromNetwork(
                         imageUrl: defaultImage,
                         fit: BoxFit.cover,
                         size: 44,
                       ),
-                      clipBehavior: Clip.hardEdge,
                     ).marginAll(2),
                   ),
                   Expanded(
@@ -189,7 +187,7 @@ class HomeView extends GetView<DashController> {
                       ],
                     ).marginOnly(left: 8),
                   ),
-                   const Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -207,8 +205,8 @@ class HomeView extends GetView<DashController> {
                 ],
               ).paddingAll(12),
             ).paddingAll(8),
-            onTap: (){
-             Get.toNamed(Routes.STOCK_DETAILS);
+            onTap: () {
+              Get.toNamed(Routes.STOCK_DETAILS);
             },
           );
         });
@@ -228,12 +226,12 @@ class HomeView extends GetView<DashController> {
                     radius: 20,
                     backgroundColor: tertiaryClr,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: Image.asset(Assets.imagesAvatar.path),
                       clipBehavior: Clip.hardEdge,
+                      child: Image.asset(Assets.imagesAvatar.path),
                     ),
                   ),
                   const Column(
@@ -260,19 +258,24 @@ class HomeView extends GetView<DashController> {
               CircleAvatar(
                 radius: 20,
                 backgroundColor: cardClr,
-                child: Icon(
+                child: const Icon(
                   Icons.search,
                   color: tertiaryClr,
                 ).marginAll(4),
               ),
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: cardClr,
-                child: Icon(
-                  Icons.notifications,
-                  color: tertiaryClr,
-                ).marginAll(4),
-              ).marginOnly(left: 8),
+              InkWell(
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: cardClr,
+                  child: const Icon(
+                    Icons.notifications,
+                    color: tertiaryClr,
+                  ).marginAll(4),
+                ).marginOnly(left: 8),
+                onTap: (){
+                  Get.toNamed(Routes.NOTIFICATION);
+                },
+              ),
             ],
           ),
         ],

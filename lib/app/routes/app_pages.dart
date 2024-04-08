@@ -14,6 +14,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/my_stock/bindings/my_stock_binding.dart';
 import '../modules/my_stock/views/my_stock_view.dart';
+import '../modules/notification/bindings/notification_binding.dart';
+import '../modules/notification/views/notification_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/edit_profile_view_view.dart';
 import '../modules/profile/views/profile_view.dart';
@@ -105,6 +107,11 @@ class AppPages {
       name: _Paths.RESET_PASSWORD,
       page: () => const ResetPasswordView(),
       binding: ResetPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATION,
+      page: () => const NotificationView(),
+      binding: NotificationBinding(),
     ),
   ];
 }

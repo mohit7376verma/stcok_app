@@ -24,7 +24,7 @@ const darkColorScheme = ColorScheme(
   primary: primaryClr,
   onPrimary: secondaryClr,
   primaryContainer: primaryClr,
-  onPrimaryContainer:secondaryClr,
+  onPrimaryContainer: secondaryClr,
   secondary: secondaryClr,
   onSecondary: neutralClr,
   secondaryContainer: secondaryClr,
@@ -49,14 +49,11 @@ const darkColorScheme = ColorScheme(
   scrim: primaryClr,
 );
 
-var carDecoration=BoxDecoration(
+var carDecoration = BoxDecoration(
   color: cardClr,
-  borderRadius: const BorderRadius.all(Radius.circular(8)),
+  borderRadius: const BorderRadius.all(Radius.circular(12)),
   border: Border.all(
     color: outlineClr,
     width: 2,
   ),
 );
-
-
-

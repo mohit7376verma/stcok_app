@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+	<title>icons8-increase-48</title>
+	<defs>
+		<image  width="40" height="40" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkBAMAAAAJEmUlAAAAAXNSR0IB2cksfwAAACpQTFRFAAAAN408OI48N487OI07N407OI08N408N407No49N407TK9QN48+OYw54QwLmwAAAA50Uk5TAHf/UlH8+liAS/j/KSieCzOVAAAA9ElEQVR4nGNkQAWMiiACTZBBSACLIEgpiiCz7gUGFr8LqIJmiisZzN6gqmSOP+w9Of6AwQVkQaAi0/tvWKQfMiIrPMDAYnPAaY4QRND4LFghUIiBReoAB1iQOYl7Akihk1kHg9McqEVmb0xB1rJInZzZInUAIghUwwyyFqho1qk5UG+63WFgcLz8hoXrAtj5YEGWuAMue4B2OM6FuGI3SBBomHJkA8hahCDI1jmzwNbuZnCFCs7qAKrhBFsLF+Sc2QByGthauOCxGLBhYGvhgoyKIIUwK2BmimkdQBIEI0YG3s+oImBBhC6iBFERdkEMkaEuCABnpar6ejXdNwAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Layer 1" href="#img1" x="4" y="8"/>
+</svg>

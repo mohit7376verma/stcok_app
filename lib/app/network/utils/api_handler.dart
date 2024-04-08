@@ -3,7 +3,6 @@ import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 
 
 import '../../models/api_error.dart';
