@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stock_app/app/widgets/common_app_bar.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../theme/app_colors.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/common_text.dart';
@@ -30,44 +31,72 @@ class MyStockView extends GetView<MyStockController> {
     return ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 20,
+        itemCount: 8,
         itemBuilder: (context, index) {
-          return Container(
-            decoration: carDecoration,
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: tertiaryClr,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    child: const SquareImageFromNetwork(
-                      imageUrl: defaultImage,
-                      fit: BoxFit.cover,
-                      size: 44,
-                    ),
-                  ).marginAll(2),
-                ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          return Material(
+            clipBehavior: Clip.hardEdge,
+            child: InkWell(
+              overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+              child: Container(
+                decoration: carDecoration,
+                child: Row(
                   children: [
-                    CommonText.semiBold(
-                      "Stocks Name",
-                      size: 14,
+                    CircleAvatar(
+                      radius: 22,
+                      backgroundColor: tertiaryClr,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        child: const SquareImageFromNetwork(
+                          imageUrl: defaultImage,
+                          fit: BoxFit.cover,
+                          size: 44,
+                        ),
+                      ).marginAll(2),
                     ),
-                    CommonText.semiBold(
-                      "\$13.2342",
-                      size: 14,
+                    Expanded(
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CommonText.semiBold(
+                            "Stocks Name",
+                            size: 14,
+                          ),
+                          CommonText.semiBold(
+                            "description",
+                            size: 12,
+                            color: neutralClr,
+                          ),
+                        ],
+                      ).marginOnly(left: 8),
                     ),
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CommonText.semiBold(
+                          "\$13.2342",
+                          size: 14,
+                        ),
+                        CommonText.semiBold(
+                          "-0.3%",
+                          size: 12,
+                          color: errorClr,
+                        ),
+                      ],
+                    ).marginOnly(left: 8)
                   ],
-                ).marginOnly(left: 8)
-              ],
-            ).paddingAll(12),
-          ).paddingAll(8);
+                ).paddingAll(12),
+              ).paddingAll(8),
+              onTap: () {
+                Get.toNamed(Routes.STOCK_DETAILS);
+              },
+            ),
+          );
         });
   }
 }

@@ -47,7 +47,6 @@ class MarketView extends GetView<DashController> {
 
   Widget marketStocks(BuildContext context) {
     return ListView.builder(
-        // physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         itemCount: 20,
         itemBuilder: (context, index) {
@@ -84,6 +83,7 @@ class MarketView extends GetView<DashController> {
                       CommonText.semiBold(
                         "\$13.2342",
                         size: 14,
+                        color: warningClr,
                       ),
                     ],
                   ).marginOnly(left: 8),
@@ -91,7 +91,7 @@ class MarketView extends GetView<DashController> {
                 IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_border_outlined))
               ],
             ).paddingAll(12),
-          ).paddingAll(8);
+          ).paddingOnly(top: 8, bottom: 8);
         });
   }
 }

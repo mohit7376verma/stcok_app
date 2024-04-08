@@ -98,7 +98,7 @@ class MessageView extends GetView<MessageController> {
                               controller.emojiShowing.value = !controller.emojiShowing.value;
                               context.hideKeyboard();
                             },
-                            child: SquareSvgImageFromAsset(Assets.imagesIcEmogi, size: 40, color: onPrimaryClr.withOpacity(0.4)),
+                            child: SquareSvgImageFromAsset(Assets.imagesIcEmogi, size: 40, color: secondaryClr.withOpacity(0.8)),
                           ),
                         ),
                       ),
@@ -114,7 +114,7 @@ class MessageView extends GetView<MessageController> {
                       }
                     },
                     heroTag: null,
-                    backgroundColor: primaryClr,
+                    backgroundColor: tertiaryClr,
                     elevation: 0.0,
                     focusElevation: 0.0,
                     highlightElevation: 0.0,

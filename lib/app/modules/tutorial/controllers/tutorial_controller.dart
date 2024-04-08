@@ -1,11 +1,21 @@
 import 'package:get/get.dart';
+import 'package:stock_app/app/utils/constants.dart';
+
+import '../../../models/TutorialModel.dart';
 
 class TutorialController extends GetxController {
-  //TODO: Implement TutorialController
+  RxList<TutorialModel> tutorialList = <TutorialModel>[].obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
+
+   tutorialList.clear();
+   tutorialList.add(TutorialModel(dummyText, false));
+   tutorialList.add(TutorialModel(dummyText, false));
+   tutorialList.add(TutorialModel(dummyText, false));
+   tutorialList.add(TutorialModel(dummyText, false));
+   tutorialList.add(TutorialModel(dummyText, false));
+
     super.onInit();
   }
 
@@ -18,6 +28,4 @@ class TutorialController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

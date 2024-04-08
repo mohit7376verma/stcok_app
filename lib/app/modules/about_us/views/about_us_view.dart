@@ -25,7 +25,7 @@ class AboutUsView extends GetView<AboutUsController> {
             children: [
               const CommonText.bold(
                 "About Us",
-                color: secondaryClr,
+                color: tertiaryClr,
                 size: 24,
               ),
               const SizedBox(height: 16,),
