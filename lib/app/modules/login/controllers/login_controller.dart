@@ -116,7 +116,7 @@ class LoginController extends GetxController {
 
   Future<void> signIn(BuildContext context) async {
     context.hideKeyboard();
-    Get.toNamed(Routes.HOME);
+    Get.offNamed(Routes.HOME);
 
     /*if (formKey.currentState?.validate() ?? false) {
       Loader.showLoading();

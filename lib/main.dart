@@ -6,7 +6,6 @@ import 'package:stock_app/app/theme/app_colors.dart';
 import 'package:stock_app/app/utils/common.dart';
 import 'package:stock_app/app/utils/pref.dart';
 
-import 'app/network/repository/auth_repository.dart';
 import 'app/network/utils/api_handler.dart';
 import 'app/network/utils/dio_client.dart';
 import 'app/routes/app_pages.dart';

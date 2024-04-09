@@ -1,3 +1,5 @@
+
+
 const kFontFamily = "Source Sans Pro";
 const kEmailPattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
@@ -11,6 +13,7 @@ const logout ="Logout";
 const baseUrl="";
 const polygonBaseUrl="https://api.polygon.io/";
 const polygonKey="ASa4jDGnoWCfigqqnlVcDSYOvSA_POXU";
+const webSocketUrl="wss://delayed.polygon.io/stocks";
 const defaultImage ="https://api.polygon.io/v1/reference/company-branding/YWdpbGVudC5jb20/images/2024-04-01_icon.jpeg?apikey=ASa4jDGnoWCfigqqnlVcDSYOvSA_POXU";
 
 const dummyText =

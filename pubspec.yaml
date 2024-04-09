@@ -29,6 +29,7 @@ dependencies:
   flutter_alice: ^1.1.1
   syncfusion_flutter_charts: ^25.1.38
   adaptive_theme: ^3.6.0
+  web_socket_channel: ^2.4.0
 
 
 dev_dependencies:

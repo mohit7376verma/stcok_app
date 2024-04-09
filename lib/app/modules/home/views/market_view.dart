@@ -28,20 +28,23 @@ class MarketView extends GetView<DashController> {
         child: Column(
           children: [
             CommonTextField(
-              bgColor: secondaryClr,
+              bgColor: cardClr,
               controller: controller.searchController,
               inputAction: TextInputAction.search,
               cursorColor: neutralClr,
-              textColor: primaryClr,
+              textColor: secondaryClr,
               focus: controller.searchFocus,
               prefixIcon: IconButton(
-                icon: const SquareSvgImageFromAsset(Assets.imagesIcSearch, size: 20),
+                icon: const Icon(
+                  Icons.search,
+                  color: secondaryClr,
+                ),
                 onPressed: () {
                   FocusScope.of(context).unfocus();
                 },
-                color: primaryClr,
+                color: secondaryClr,
               ),
-              hintText: "Search Stock ...",
+              hintText: "Search Stock ....",
             ).paddingOnly(bottom: 8),
             Expanded(child: Obx(() {
               return marketStocks(context);
