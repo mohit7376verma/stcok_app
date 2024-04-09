@@ -1,14 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:stock_app/app/modules/home/views/home_view.dart';
 import 'package:stock_app/app/modules/home/views/market_view.dart';
 import 'package:stock_app/app/modules/home/views/more_view.dart';
 import 'package:stock_app/app/modules/home/views/news_view.dart';
-// import 'package:stock_app/generated/assets.dart';
+import 'package:stock_app/app/widgets/image.dart';
 
 import '../../../gen/assets.gen.dart';
 import '../../../theme/app_colors.dart';
@@ -23,43 +20,46 @@ class DashboardView extends GetView<DashController> {
     return Obx(
       () => SafeArea(
         child: Scaffold(
-            key: controller.scaffoldKey,
-            body: PageView(
-              controller: controller.pageCtrl,
-              onPageChanged: controller.onPageChanged(controller.currentIndex.value),
-              physics: const NeverScrollableScrollPhysics(),
-              children: pages,
-            ),
-            bottomNavigationBar: bottomNavigationBar(),
-            drawer: Drawer(
-              width: MediaQuery.sizeOf(context).width * .75,
-              backgroundColor: onBackgroundClr,
-              elevation: 0.0,
-              child: const MoreView(),
-            ),
-            drawerDragStartBehavior: DragStartBehavior.start,
-            drawerEnableOpenDragGesture: true,
-            onDrawerChanged: (state) {
-              controller.isDrawerOpen.value = state;
-              if(state!=true){
-                var index=controller.drawerOpenIndex.value;
-                controller.currentIndex.value=index;
-              }
-            },
+          key: controller.scaffoldKey,
+          body: PageView(
+            controller: controller.pageCtrl,
+            onPageChanged: controller.onPageChanged(controller.currentIndex.value),
+            physics: const NeverScrollableScrollPhysics(),
+            children: pages,
           ),
+          bottomNavigationBar: bottomNavigationBar(),
+          drawer: Drawer(
+            width: MediaQuery.sizeOf(context).width * .75,
+            backgroundColor: onBackgroundClr,
+            elevation: 0.0,
+            child: const MoreView(),
+          ),
+          drawerDragStartBehavior: DragStartBehavior.start,
+          drawerEnableOpenDragGesture: true,
+          onDrawerChanged: (state) {
+            controller.isDrawerOpen.value = state;
+            if (state != true) {
+              var index = controller.drawerOpenIndex.value;
+              controller.currentIndex.value = index;
+            }
+          },
+        ),
       ),
     );
   }
 
   NavigationDestination navItem(String icon, title) {
     return NavigationDestination(
-      icon: SvgPicture.asset(
+      icon: SquareSvgImageFromAsset(
         icon,
-        width: 16,
-        height: 16,
+        size: 16,
         color: onPrimaryClr.withOpacity(0.5),
       ),
-      selectedIcon: SvgPicture.asset(icon, width: 16, height: 16, color: onPrimaryClr),
+      selectedIcon: SquareSvgImageFromAsset(
+        icon,
+        size: 16,
+        color: onPrimaryClr,
+      ),
       label: title,
     );
   }
@@ -67,9 +67,7 @@ class DashboardView extends GetView<DashController> {
   Widget bottomNavigationBar() {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: onPrimaryClr.withOpacity(0.05),spreadRadius: 4, blurRadius: 8)
-        ],
+        boxShadow: [BoxShadow(color: onPrimaryClr.withOpacity(0.05), spreadRadius: 4, blurRadius: 8)],
         color: onBackgroundClr,
         borderRadius: const BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16)),
       ),
@@ -84,7 +82,7 @@ class DashboardView extends GetView<DashController> {
         selectedIndex: controller.currentIndex.value,
         onDestinationSelected: (index) {
           if (index == 4) {
-            controller.drawerOpenIndex.value=controller.currentIndex.value;
+            controller.drawerOpenIndex.value = controller.currentIndex.value;
             controller.onPageChanged(index);
             controller.scaffoldKey.currentState?.openDrawer();
           } else {

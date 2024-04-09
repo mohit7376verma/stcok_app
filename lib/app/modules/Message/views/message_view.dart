@@ -65,7 +65,7 @@ class MessageView extends GetView<MessageController> {
   Widget textBox(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: surfaceClr,
+        color: onBackgroundClr,
         boxShadow: [BoxShadow(offset: const Offset(0, -2), color: onBackgroundClr.withOpacity(0.05))],
       ),
       child: SafeArea(
@@ -84,8 +84,8 @@ class MessageView extends GetView<MessageController> {
                         keyboardType: TextInputType.multiline,
                         maxLines: 20,
                         focus: controller.messageFocus.obs.value,
-                        bgColor: onBackgroundClr,
-                        borderColor: onBackgroundClr,
+                        bgColor: tertiaryClr.withOpacity(0.2),
+                        borderColor: tertiaryClr,
                         onTap: () {
                           if (controller.emojiShowing.value) {
                             controller.emojiShowing.value = false;
@@ -98,7 +98,8 @@ class MessageView extends GetView<MessageController> {
                               controller.emojiShowing.value = !controller.emojiShowing.value;
                               context.hideKeyboard();
                             },
-                            child: SquareSvgImageFromAsset(Assets.imagesIcEmogi, size: 40, color: secondaryClr.withOpacity(0.8)),
+                            child: SquareSvgImageFromAsset(Assets.imagesIcEmogi,
+                                size: 40, color: controller.messageFocus.hasFocus ? onPrimaryClr : onPrimaryClr.withOpacity(0.5)),
                           ),
                         ),
                       ),

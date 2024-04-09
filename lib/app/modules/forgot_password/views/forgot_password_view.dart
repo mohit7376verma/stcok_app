@@ -15,43 +15,45 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: primaryClr,
-      appBar: const CommonAppBar(title: "Forgot Password"),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            children: [
-              // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-              /*const CommonText.bold(
-                "Stock",
-                color: secondaryClr,
-                size: 32,
-              ),*/
-              // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-
-              Obx(() => Visibility(
-                    replacement: codeView(context),
-                    visible: controller.forgotOtpStatus.value,
-                    child: emailView(context),
-                  )),
-            ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: primaryClr,
+        appBar: const CommonAppBar(title: "Forgot Password"),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              children: [
+                // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                /*const CommonText.bold(
+                  "Stock",
+                  color: secondaryClr,
+                  size: 32,
+                ),*/
+                // SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+      
+                Obx(() => Visibility(
+                      replacement: codeView(context),
+                      visible: controller.forgotOtpStatus.value,
+                      child: emailView(context),
+                    )),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: Wrap(
-        alignment: WrapAlignment.center,
-        children: [
-          CommonText.bold(
-            "Back to Login",
-            color: secondaryClr,
-            size: 16,
-            onTap: () {
-              Get.back();
-            },
-          ).marginAll(16)
-        ],
+        bottomNavigationBar: Wrap(
+          alignment: WrapAlignment.center,
+          children: [
+            CommonText.bold(
+              "Back to Login",
+              color: secondaryClr,
+              size: 16,
+              onTap: () {
+                Get.back();
+              },
+            ).marginAll(24)
+          ],
+        ),
       ),
     );
   }
@@ -110,21 +112,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
       const SizedBox(height: 16),
       Row(
         children: [
-          Expanded(
-            child: OutlinedButton(
-              onPressed: () => controller.forgotOtpStatus.value = true,
-              style: OutlinedButton.styleFrom(
-                foregroundColor: primaryClr,
-                backgroundColor: Colors.transparent,
-                side: const BorderSide(color: tertiaryClr, width: 2),
-                minimumSize: const Size(double.infinity, 50),
-                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-              ),
-              child: const Center(
-                child: CommonText.bold("Previous Step", size: 14, color: tertiaryClr, textAlign: TextAlign.center),
-              ),
-            ).paddingOnly(right: 8),
-          ),
+          Expanded(child: CommonButton.outline(onPressed: () => controller.forgotOtpStatus.value = true, label: "Previous Step").paddingOnly(right: 8)),
           Expanded(child: CommonButton(onPressed: () => {Get.toNamed(Routes.RESET_PASSWORD)}, label: "Submit").paddingOnly(left: 8)),
         ],
       ),

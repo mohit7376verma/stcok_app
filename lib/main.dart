@@ -3,11 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:stock_app/app/theme/app_colors.dart';
 import 'package:stock_app/app/utils/common.dart';
+import 'package:stock_app/app/utils/pref.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Future.wait([Prefs().init()]);
 
   SystemChrome.setSystemUIOverlayStyle(systemStyle());
 

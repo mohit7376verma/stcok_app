@@ -113,9 +113,7 @@ class MoreView extends GetView<DashController> {
             showSecondaryBtn: true,
             secondaryBtnText: "Cancel",
             image: Assets.imagesIcLogout,
-            onPrimaryBtnClick: () {
-              Get.back();
-            },
+            onPrimaryBtnClick: () => Get.offAllNamed(Routes.LOGIN),
             onSecondaryBtnClick: () => Get.back(),
           );
         }

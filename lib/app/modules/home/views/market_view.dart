@@ -21,7 +21,7 @@ class MarketView extends GetView<DashController> {
         hasBackIcon: false,
       ),
       body: Container(
-        padding: const EdgeInsets.only(left: 16,right: 16),
+        padding: const EdgeInsets.only(left: 16,right: 16,bottom: 8),
         child: Column(
           children: [
             CommonTextField(

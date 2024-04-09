@@ -25,12 +25,12 @@ class HomeView extends GetView<DashController> {
               appBar(),
               topHeaderSection(context),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Expanded(
-                      child: CommonText.medium(
+                  const CommonText.medium(
                     "Favorite Stocks",
                     size: 16,
-                  )),
+                  ),
                   CommonButton.outline(onPressed: () {}, label: "View All", textSize: 12),
                 ],
               ).marginOnly(left: 16, right: 16),
@@ -44,12 +44,12 @@ class HomeView extends GetView<DashController> {
                 child: favoriteStocks(context),
               ).marginAll(4),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Expanded(
-                      child: CommonText.medium(
+                  const CommonText.medium(
                     "My Stocks",
                     size: 18,
-                  )),
+                  ),
                   CommonButton.outline(
                     onPressed: () {
                       Get.toNamed(Routes.MY_STOCK);
@@ -64,7 +64,7 @@ class HomeView extends GetView<DashController> {
                       decoration: const BoxDecoration(
                         color: primaryClr,
                       ),
-                      child: Expanded(child: myStocks(context)))
+                      child: myStocks(context))
                   .marginAll(4)
             ],
           ),
@@ -219,38 +219,36 @@ class HomeView extends GetView<DashController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Container(
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: tertiaryClr,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      clipBehavior: Clip.hardEdge,
-                      child: Image.asset(Assets.imagesAvatar.path),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 20,
+                  backgroundColor: tertiaryClr,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
                     ),
+                    clipBehavior: Clip.hardEdge,
+                    child: Image.asset(Assets.imagesAvatar.path),
                   ),
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CommonText.medium(
-                        "Johan Dio",
-                        size: 16,
-                      ),
-                      CommonText.medium(
-                        "Johan Dio",
-                        size: 12,
-                        color: neutralClr,
-                      ),
-                    ],
-                  ).marginOnly(left: 4)
-                ],
-              ),
+                ),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CommonText.medium(
+                      "Johan Dio",
+                      size: 16,
+                    ),
+                    CommonText.medium(
+                      "Johan Dio",
+                      size: 12,
+                      color: neutralClr,
+                    ),
+                  ],
+                ).marginOnly(left: 4)
+              ],
             ),
           ),
           Row(
@@ -272,7 +270,7 @@ class HomeView extends GetView<DashController> {
                     color: tertiaryClr,
                   ).marginAll(4),
                 ).marginOnly(left: 8),
-                onTap: (){
+                onTap: () {
                   Get.toNamed(Routes.NOTIFICATION);
                 },
               ),

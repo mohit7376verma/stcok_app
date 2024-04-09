@@ -32,9 +32,10 @@ class TextMessage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             decoration: BoxDecoration(
-              color: message?.senderId == Prefs().userId() ? primaryClr : surfaceClr,
-              borderRadius:
-                  message?.senderId == Prefs().userId() ? border.copyWith(bottomRight: const Radius.circular(4)) : border.copyWith(bottomLeft: const Radius.circular(4)),
+              color: message?.senderId == Prefs().userId() ? secondaryClr : tertiaryClr,
+              borderRadius: message?.senderId == Prefs().userId()
+                  ? border.copyWith(bottomRight: const Radius.circular(4))
+                  : border.copyWith(bottomLeft: const Radius.circular(4)),
               boxShadow: [BoxShadow(color: onBackgroundClr.withOpacity(0.05), blurRadius: 4)],
             ),
             child: Column(
@@ -43,12 +44,12 @@ class TextMessage extends StatelessWidget {
                 CommonText.regular(
                   message?.msg ?? "",
                   size: 14,
-                  color: message?.senderId == Prefs().userId() ? Colors.white : onBackgroundClr,
+                  color: message?.senderId == Prefs().userId() ? primaryClr : secondaryClr,
                 ),
                 CommonText.regular(
                   message?.timeStamp ?? "",
                   size: 10,
-                  color: message?.senderId == Prefs().userId() ? onPrimaryClr : onBackgroundClr,
+                  color: message?.senderId == Prefs().userId() ? primaryClr : secondaryClr,
                 ).marginOnly(top: 6, bottom: 2),
               ],
             ),

@@ -68,7 +68,7 @@ class ProfileView extends GetView<ProfileController> {
                         title: 'Warning',
                         message: 'Are you sure you want to delete this account?',
                         primaryBtnText: 'Confirm',
-                        onPrimaryBtnClick: () {},
+                        onPrimaryBtnClick: () => Get.back(),
                         secondaryBtnText: 'Cancel',
                         showSecondaryBtn: true,
                         onSecondaryBtnClick: () => Get.back());
