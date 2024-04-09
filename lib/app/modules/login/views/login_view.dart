@@ -92,9 +92,9 @@ class LoginView extends GetView<LoginController> {
                                   keyboardType: TextInputType.emailAddress,
                                   focus: focusNode,
                                   validator: validateEmail,
-                                  prefixIcon:  Padding(
-                                    padding: const EdgeInsets.all(16),
-                                    child: Icon(Icons.mail_outline, size: 20, color: context.theme.primaryColor),
+                                  prefixIcon:  const Padding(
+                                    padding: EdgeInsets.all(16),
+                                    child: Icon(Icons.mail_outline, size: 20, color: secondaryClr),
                                   ),
                                 )),
                         const SizedBox(height: 18),

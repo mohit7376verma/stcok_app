@@ -24,7 +24,7 @@ class DashController extends GetxController {
   final FocusNode searchFocus = FocusNode();
   ScrollController stockScrollController = ScrollController();
   RxList<Results> stockList = <Results>[].obs;
-  List<Results> mailList = <Results>[];
+  var mailList = <Results>[];
   var stockNextUrl = "";
   RxBool isLoading = false.obs;
 
@@ -52,16 +52,19 @@ class DashController extends GetxController {
       }
     });
 
-    /*searchController.addListener(() {
+    searchController.addListener(() {
       if (searchController.text.length > 1) {
         searchStocks();
       } else {
-        print("CALLEd \n Main SIZE ${mailList.length} \n STOCK SIZE ${stockList.length}");
-        if(stockList.length != mailList.length){
-          stockList.value = mailList;
+        if (searchController.text.isNotEmpty) {
+          searchStocks();
+        } else {
+          if (stockList.length != mailList.length) {
+            stockList.value = mailList;
+          }
         }
       }
-    });*/
+    });
   }
 
   @override
@@ -87,11 +90,11 @@ class DashController extends GetxController {
   }
 
   void getStockList(bool isLoadMore) async {
-   if(isLoadMore) {
-     isLoading.value = true;
-   } else {
-     Loader.showLoading();
-   }
+    if (isLoadMore) {
+      isLoading.value = true;
+    } else {
+      Loader.showLoading();
+    }
     var query = <String, dynamic>{};
     query["market"] = "stocks";
     query["active"] = true;
@@ -101,7 +104,7 @@ class DashController extends GetxController {
 
     var repo = await DashRepository().getStockList(query);
     repo.when(success: (value) {
-      if(isLoadMore) {
+      if (isLoadMore) {
         isLoading.value = false;
       } else {
         Loader.hideLoading();
@@ -119,9 +122,9 @@ class DashController extends GetxController {
       stockNextUrl = value.nextUrl?.split("cursor=").last ?? "";
       Alert.log(runtimeType.toString(), "STOCK NEXT URL $stockNextUrl");
 
-      mailList = stockList;
+      mailList = stockList.value;
     }, error: (error) {
-      if(isLoadMore) {
+      if (isLoadMore) {
         isLoading.value = false;
       } else {
         Loader.hideLoading();
@@ -130,16 +133,17 @@ class DashController extends GetxController {
     });
   }
 
+  //Search the stock by the name and symbol
   void searchStocks() {
     if (searchController.text.isNotEmpty) {
-      print("MAIN SIZE ${mailList.length}");
-      var filterList = mailList.where((element) => element.name?.contains(searchController.text) ?? false);
-      stockList.clear();
+      var filterList = mailList.where((element) =>
+          (element.name?.toLowerCase().contains(searchController.text.toLowerCase()) ?? false) ||
+          (element.ticker?.toLowerCase().contains(searchController.text.toLowerCase()) ?? false));
       if (filterList.isNotEmpty) {
-        print("INSIDE");
         stockList.value = filterList.toList();
+      } else {
+        stockList.value = [];
       }
-      Alert.log(runtimeType.toString(), "FILTER LIST SIZE ${filterList.length}");
     }
   }
 }

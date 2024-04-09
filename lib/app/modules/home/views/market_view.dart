@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stock_app/app/modules/home/controllers/dash_controller.dart';
 import 'package:stock_app/app/network/utils/log_util.dart';
+import 'package:stock_app/app/utils/no_data_view.dart';
 import 'package:stock_app/app/widgets/widgets.dart';
 
 import '../../../../generated/assets.dart';
@@ -14,8 +15,6 @@ import '../../../widgets/image.dart';
 
 class MarketView extends GetView<DashController> {
   const MarketView({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,7 @@ class MarketView extends GetView<DashController> {
   }
 
   Widget marketStocks(BuildContext context) {
-    return ListView.builder(
+    return controller.stockList.isEmpty ? const NoDataView(title: "No Stocks Found",showImage: true,): ListView.builder(
         shrinkWrap: true,
         controller: controller.stockScrollController,
         itemCount: controller.stockList.length,

@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String imagesAvatar = 'assets/images/avatar.png';
+  static const String imagesIcAlertCircle = 'assets/images/ic_alert_circle.svg';
   static const String imagesIcBack = 'assets/images/ic_back.svg';
   static const String imagesIcCall = 'assets/images/ic_call.svg';
   static const String imagesIcEmogi = 'assets/images/ic_emogi.svg';
@@ -16,5 +17,7 @@ class Assets {
   static const String imagesIcPerson = 'assets/images/ic_person.svg';
   static const String imagesIcSearch = 'assets/images/ic_search.svg';
   static const String imagesIcTrash = 'assets/images/ic_trash.svg';
+  static const String imagesMarket48 = 'assets/images/market_48.svg';
+  static const String imagesNews = 'assets/images/news.svg';
 
 }
