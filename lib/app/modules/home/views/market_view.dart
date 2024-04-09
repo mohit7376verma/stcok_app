@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stock_app/app/modules/home/controllers/dash_controller.dart';
+import 'package:stock_app/app/network/utils/log_util.dart';
+import 'package:stock_app/app/widgets/widgets.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../theme/app_colors.dart';
@@ -13,6 +15,8 @@ import '../../../widgets/image.dart';
 class MarketView extends GetView<DashController> {
   const MarketView({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +25,7 @@ class MarketView extends GetView<DashController> {
         hasBackIcon: false,
       ),
       body: Container(
-        padding: const EdgeInsets.only(left: 16,right: 16,bottom: 8),
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
         child: Column(
           children: [
             CommonTextField(
@@ -33,22 +37,28 @@ class MarketView extends GetView<DashController> {
               focus: controller.searchFocus,
               prefixIcon: IconButton(
                 icon: const SquareSvgImageFromAsset(Assets.imagesIcSearch, size: 20),
-                onPressed: () => FocusScope.of(context).unfocus(),
+                onPressed: () {
+                  FocusScope.of(context).unfocus();
+                },
                 color: primaryClr,
               ),
               hintText: "Search Stock ...",
             ).paddingOnly(bottom: 8),
-            Expanded(child: marketStocks(context, () {}))
+            Expanded(child: Obx(() {
+              return marketStocks(context);
+            })),
+            Obx(() => controller.isLoading.value ? pageLoader(context) : Container())
           ],
         ),
       ),
     );
   }
 
-  Widget marketStocks(BuildContext context, VoidCallback callback) {
+  Widget marketStocks(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
-        itemCount: 20,
+        controller: controller.stockScrollController,
+        itemCount: controller.stockList.length,
         itemBuilder: (context, index) {
           return Container(
             padding: const EdgeInsets.all(2),
@@ -57,7 +67,9 @@ class MarketView extends GetView<DashController> {
               color: cardClr,
               child: InkWell(
                 borderRadius: BorderRadius.circular(8),
-                onTap: callback,
+                onTap: () {
+                  Alert.log(runtimeType.toString(), "ITEM ${controller.stockList[index].toJson()}");
+                },
                 child: Row(
                   children: [
                     CircleAvatar(
@@ -77,16 +89,16 @@ class MarketView extends GetView<DashController> {
                       ).marginAll(2),
                     ),
                     Expanded(
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CommonText.semiBold(
-                            "Stocks Name",
+                            controller.stockList[index].name ?? "",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             size: 14,
                           ),
-                          CommonText.semiBold(
+                          const CommonText.semiBold(
                             "\$13.2342",
                             size: 14,
                             color: warningClr,

@@ -253,13 +253,16 @@ class HomeView extends GetView<DashController> {
           ),
           Row(
             children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: cardClr,
-                child: const Icon(
-                  Icons.search,
-                  color: tertiaryClr,
-                ).marginAll(4),
+              InkWell(
+                onTap: () => controller.currentIndex.value = 1,
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: cardClr,
+                  child: const Icon(
+                    Icons.search,
+                    color: tertiaryClr,
+                  ).marginAll(4),
+                ),
               ),
               InkWell(
                 child: CircleAvatar(

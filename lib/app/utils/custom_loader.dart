@@ -40,7 +40,7 @@ class Loader {
           height: 64,
           decoration: BoxDecoration(color: onPrimaryClr, borderRadius: BorderRadius.circular(16)),
           padding: const EdgeInsets.all(8.0),
-          child: const SpinKitCubeGrid(color: primaryClr, size: 20),
+          child: const SpinKitThreeBounce(color: primaryClr, size: 20),
         ),
       ).marginAll(MediaQuery.sizeOf(Get.context as BuildContext).width * 0.31),
     );
