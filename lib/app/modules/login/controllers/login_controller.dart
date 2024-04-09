@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:stock_app/app/utils/extensions/extension.dart';
+import 'package:stock_app/main.dart';
+
+import '../../../network/repository/auth_repository.dart';
+import 'package:stock_app/app/utils/extensions/extension.dart';
 
 import '../../../models/credentials_model.dart';
 import '../../../network/utils/log_util.dart';
@@ -13,6 +17,12 @@ class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  TextEditingController sNameController = TextEditingController();
+  TextEditingController sPasswordController = TextEditingController();
+  TextEditingController sEmailController = TextEditingController();
+  TextEditingController sMobileController = TextEditingController();
+  TextEditingController sOtpController = TextEditingController();
+
   FocusNode emailFocus = FocusNode();
   FocusNode passwordFocus = FocusNode();
 
@@ -21,6 +31,9 @@ class LoginController extends GetxController {
 
   List<Credentials> credentialList = [];
   List<String> emailList = [];
+
+  final count = 0.obs;
+
 
   @override
   void onInit() {
@@ -54,6 +67,44 @@ class LoginController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  void increment() => count.value++;
+
+  Future<void> onSignUpTap(BuildContext context) async {
+    context.hideKeyboard();
+    // if (sOtpController.value.text.isNotEmpty && sOtpController.value.text.length < 6) {
+    //   isValid = false;
+    //   Fluttertoast.showToast(
+    //       msg: "Please Enter otp",
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.CENTER,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0);
+    //   return;
+    // }
+
+    // if ((signupFormKey.currentState?.validate() ?? false ) && sOtpController.value.text.isNotEmpty) {
+    //   LoaderView.showLoading();
+      final data = <String, dynamic>{};
+      data['name'] = sNameController.value.text;
+      data['mobile'] = sMobileController.value.text;
+      data['email'] = sEmailController.value.text;
+      data['code'] = sOtpController.value.text;
+      data['password'] = sPasswordController.value.text;
+
+      var repo = await AuthRepository().register(data);
+      repo.when(success: (value) {
+        // if (value.status == "success") {
+        // LoaderView.hideLoading();
+        Get.back();
+        // }
+      }, error: (error) {
+        // LoaderView.hideLoading();
+        // LoaderView.showErrorDialog(title: "Error", description: error.errorMessage);
+      });
+    }
 
   @override
   void dispose() {

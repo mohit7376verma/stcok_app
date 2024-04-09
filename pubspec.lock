@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "61.0.0"
+  adaptive_theme:
+    dependency: "direct main"
+    description:
+      name: adaptive_theme
+      sha256: f4ee609b464e5efc68131d9d15ba9aa1de4e3b5ede64be17781c6e19a52d637d
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.0"
   analyzer:
     dependency: transitive
     description:
@@ -185,6 +193,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  chopper:
+    dependency: transitive
+    description:
+      name: chopper
+      sha256: "813cabd029ad8c020874429a671f2c15f45cfc3ced66b566bfa181a9b61b89b8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.6"
   chunked_stream:
     dependency: transitive
     description:
@@ -430,6 +446,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_alice:
+    dependency: "direct main"
+    description:
+      name: flutter_alice
+      sha256: "4d701d0db1cf3fb9a53e5d411ed5fef60a3563ea8b2d2c231614910644a3ca21"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -827,6 +851,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  overlay_support:
+    dependency: transitive
+    description:
+      name: overlay_support
+      sha256: fc39389bfd94e6985e1e13b2a88a125fc4027608485d2d4e2847afe1b2bb339c
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   package_config:
     dependency: transitive
     description:
@@ -1131,6 +1163,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
+  share:
+    dependency: transitive
+    description:
+      name: share
+      sha256: "97e6403f564ed1051a01534c2fc919cb6e40ea55e60a18ec23cee6e0ce19f4be"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
   shared_preferences:
     dependency: transitive
     description:

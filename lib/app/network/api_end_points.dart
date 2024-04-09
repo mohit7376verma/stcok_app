@@ -1,6 +1,7 @@
 class ApiEndPoints {
   static const register = "api/auth/v1/register";
   static const login = "api/auth/v1/login";
+
   static const forgotPassword = "api/auth/v1/forgotpassword";
   static const verifyOtp = "api/auth/v1/verifyotp";
   static const resetPassword = "api/auth/v1/resetpassword";
@@ -11,4 +12,10 @@ class ApiEndPoints {
 
   static const token = "/oauth2/token";
   static const getCoinData = "api/auth/v1/get_data";
+
+
+  //polygon.io Api
+  static const news = "v2/reference/news";
+  static const tickers = "/v3/reference/tickers";
+
 }

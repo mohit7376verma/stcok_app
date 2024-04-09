@@ -1,5 +1,7 @@
 
 
+import 'dart:convert';
+
 import '../api_end_points.dart';
 import '../response/LoginResponse.dart';
 import '../response/RegisterResponse.dart';
@@ -16,16 +18,11 @@ class AuthRepository extends BaseRepository {
         fromJson: LoginResponse.fromJson);
   }
 
-  Future<NetworkResult<RegisterResponse>> register(String name, String email,
-      String password, String confirmPassword) async {
+  Future<NetworkResult<RegisterResponse>> register(Map data) async {
     return post<RegisterResponse>(ApiEndPoints.register,
-        body: {
-          "fullname": name,
-          "email": email,
-          "password": password,
-          "password_confirmation": confirmPassword
-        },
-        fromJson: RegisterResponse.fromJson);
+        body:jsonEncode(data),
+        fromJson: RegisterResponse.fromJson
+    );
   }
 
 

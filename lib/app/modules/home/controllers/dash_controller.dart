@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:stock_app/app/network/repository/dash_repository.dart';
+import 'package:stock_app/app/network/response/StockListResponse.dart';
 
 import '../../../models/TutorialModel.dart';
 import '../../../utils/constants.dart';
@@ -17,8 +19,12 @@ class DashController extends GetxController {
   TextEditingController searchController = TextEditingController();
   final FocusNode searchFocus = FocusNode();
 
+  //Market View
+  RxList<Results> stockList = <Results>[].obs;
+
   //News View
   RxList<TutorialModel> newsList = <TutorialModel>[].obs;
+
 
   @override
   void onInit() {
@@ -37,6 +43,7 @@ class DashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    getStockList();
   }
 
   @override
@@ -44,9 +51,7 @@ class DashController extends GetxController {
     super.onClose();
   }
 
-  chatRefresh() async{
-
-  }
+  chatRefresh() async {}
 
   onPageChanged(int index) {
     try {
@@ -55,5 +60,24 @@ class DashController extends GetxController {
     } catch (e) {
       e.printError();
     }
+  }
+
+  void getStockList() async
+  {
+    var query=<String,dynamic>{};
+    query["market"]="stocks";
+    query["active"]=true;
+
+    var repo = await DashRepository().getStockList(query);
+    repo.when(success: (value) {
+      print("response ${value.toJson()}");
+      if (value.results?.isNotEmpty==true) {
+
+
+      }
+    }, error: (error) {
+      // LoaderView.hideLoading();
+      // LoaderView.showErrorDialog(title: "Error", description: error.errorMessage);
+    });
   }
 }

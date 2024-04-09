@@ -26,7 +26,9 @@ dependencies:
   emoji_picker_flutter: ^1.6.3
   cached_network_image: ^3.3.0
   persistent_bottom_nav_bar: ^5.0.2
+  flutter_alice: ^1.1.1
   syncfusion_flutter_charts: ^25.1.38
+  adaptive_theme: ^3.6.0
 
 
 dev_dependencies:

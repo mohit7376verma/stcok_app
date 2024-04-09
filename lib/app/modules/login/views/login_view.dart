@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
@@ -90,9 +92,9 @@ class LoginView extends GetView<LoginController> {
                                   keyboardType: TextInputType.emailAddress,
                                   focus: focusNode,
                                   validator: validateEmail,
-                                  prefixIcon: const Padding(
-                                    padding: EdgeInsets.all(16),
-                                    child: Icon(Icons.mail_outline, size: 20, color: secondaryClr),
+                                  prefixIcon:  Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Icon(Icons.mail_outline, size: 20, color: context.theme.primaryColor),
                                   ),
                                 )),
                         const SizedBox(height: 18),

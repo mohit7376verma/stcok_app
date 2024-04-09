@@ -8,8 +8,8 @@ import '../../utils/constants.dart';
 import '../../utils/pref.dart';
 import 'log_interceptor.dart' as logger;
 
-class DioClient {
-  DioClient() {
+class PolygonDioClient {
+  PolygonDioClient() {
     setUpOptions();
   }
   Dio _dio = Dio();
@@ -27,7 +27,7 @@ class DioClient {
     }
 
     var baseOptions = BaseOptions(
-      baseUrl: baseUrl,
+      baseUrl: polygonBaseUrl,
       connectTimeout: const Duration(seconds: 30000),
       receiveTimeout: const Duration(seconds: 30000),
       headers: headerMap,
@@ -35,11 +35,11 @@ class DioClient {
 
     _dio = Dio(baseOptions);
     _dio.interceptors
-      ..add(logger.LogInterceptor());
+      .add(logger.LogInterceptor());
       // ..add(alice.getDioInterceptor());
   }
 
-  Dio getClient() {
+  Dio getPolygonDioClient() {
     return _dio;
   }
 }
