@@ -63,6 +63,7 @@ extension $NullableStringExtension on String? {
     return this == null ? 0 : double.tryParse(this!) ?? 0.0;
   }
 }
+
 extension $DateTimeExtension on DateTime {
   String toLocalString([String format = "yyyy-MM-dd HH:mm:ss"]) {
     var strDate = DateFormat(format).format(toLocal());

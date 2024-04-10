@@ -18,6 +18,16 @@ class Assets {
   static const AssetGenImage imagesAvatar =
       AssetGenImage('assets/images/avatar.png');
 
+  /// File path: assets/images/chat.svg
+  static const SvgGenImage imagesChat = SvgGenImage('assets/images/chat.svg');
+
+  /// File path: assets/images/home.svg
+  static const SvgGenImage imagesHome = SvgGenImage('assets/images/home.svg');
+
+  /// File path: assets/images/ic_alert_circle.svg
+  static const SvgGenImage imagesIcAlertCircle =
+      SvgGenImage('assets/images/ic_alert_circle.svg');
+
   /// File path: assets/images/ic_back.svg
   static const SvgGenImage imagesIcBack =
       SvgGenImage('assets/images/ic_back.svg');
@@ -74,12 +84,18 @@ class Assets {
   static const SvgGenImage imagesMarket48 =
       SvgGenImage('assets/images/market_48.svg');
 
+  /// File path: assets/images/menu.svg
+  static const SvgGenImage imagesMenu = SvgGenImage('assets/images/menu.svg');
+
   /// File path: assets/images/news.svg
   static const SvgGenImage imagesNews = SvgGenImage('assets/images/news.svg');
 
   /// List of all assets
   static List<dynamic> get values => [
         imagesAvatar,
+        imagesChat,
+        imagesHome,
+        imagesIcAlertCircle,
         imagesIcBack,
         imagesIcCall,
         imagesIcEmogi,
@@ -94,6 +110,7 @@ class Assets {
         imagesIcSearch,
         imagesIcTrash,
         imagesMarket48,
+        imagesMenu,
         imagesNews
       ];
 }

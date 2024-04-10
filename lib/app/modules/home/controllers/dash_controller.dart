@@ -6,10 +6,10 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:stock_app/app/network/repository/dash_repository.dart';
 import 'package:stock_app/app/network/response/SocketConnectionResponse.dart';
 import 'package:stock_app/app/network/response/StockListResponse.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:stock_app/app/network/response/NewsResponse.dart' as newsResponse;
 import 'package:stock_app/app/network/utils/log_util.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
-import '../../../models/TutorialModel.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/custom_loader.dart';
 import '../../../widgets/widgets.dart';
@@ -28,26 +28,24 @@ class DashController extends GetxController {
   final FocusNode searchFocus = FocusNode();
   ScrollController stockScrollController = ScrollController();
   RxList<Results> stockList = <Results>[].obs;
+
   var mailList = <Results>[];
   var stockNextUrl = "";
   RxBool isLoading = false.obs;
 
   //News View
-  RxList<TutorialModel> newsList = <TutorialModel>[].obs;
+  RxList<newsResponse.Results> newsList = <newsResponse.Results>[].obs;
+  var newsNextUrl = "";
+  ScrollController newsScrollController = ScrollController();
+  RxBool newsMoreLoading = false.obs;
+
 
   WebSocketChannel? channel;
 
   @override
   void onInit() {
     super.onInit();
-    newsList.clear();
-    newsList.add(TutorialModel(dummyText, false));
-    newsList.add(TutorialModel(dummyText, false));
-    newsList.add(TutorialModel(dummyText, false));
-    newsList.add(TutorialModel(dummyText, false));
-    newsList.add(TutorialModel(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non tellus ante. Nulla mattis urna eu elit faucibus tincidunt. Quisque id egestas eros. Suspendisse potenti. Mauris ultricies urna vitae euismod faucibus. Morbi eu purus dictum, egestas felis sit amet, tincidunt diam. Ut gravida rhoncus hendrerit. Integer eget eros et sem ultrices mollis. Aenean lacinia elit id nulla porta, ac sodales enim lacinia. Donec viverra risus nec neque dignissim, id consectetur nisi ornare. Nullam vel lorem in lorem faucibus viverra. Nulla congue malesuada sagittis. Proin vel malesuada nisl. Vestibulum at lectus id eros bibendum molestie quis sed dolor. Vestibulum interdum in diam quis laoreet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non tellus ante. Nulla mattis urna eu elit faucibus tincidunt. Quisque id egestas eros. Suspendisse potenti. Mauris ultricies urna vitae euismod faucibus. Morbi eu purus dictum, egestas felis sit amet, tincidunt diam. Ut gravida rhoncus hendrerit. Integer eget eros et sem ultrices mollis. Aenean lacinia elit id nulla porta, ac sodales enim lacinia. Donec viverra risus nec neque dignissim, id consectetur nisi ornare. Nullam vel lorem in lorem faucibus viverra. Nulla congue malesuada sagittis. Proin vel malesuada nisl. Vestibulum at lectus id eros bibendum molestie quis sed dolor. Vestibulum interdum in diam quis laoreet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non tellus ante. Nulla mattis urna eu elit faucibus tincidunt. Quisque id egestas eros. Suspendisse potenti. Mauris ultricies urna vitae euismod faucibus. Morbi eu purus dictum, egestas felis sit amet, tincidunt diam. Ut gravida rhoncus hendrerit. Integer eget eros et sem ultrices mollis. Aenean lacinia elit id nulla porta, ac sodales enim lacinia. Donec viverra risus nec neque dignissim, id consectetur nisi ornare. Nullam vel lorem in lorem faucibus viverra. Nulla congue malesuada sagittis. Proin vel malesuada nisl. Vestibulum at lectus id eros bibendum molestie quis sed dolor. Vestibulum interdum in diam quis laoreet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non tellus ante. Nulla mattis urna eu elit faucibus tincidunt. Quisque id egestas eros. Suspendisse potenti. Mauris ultricies urna vitae euismod faucibus. Morbi eu purus dictum, egestas felis sit amet, tincidunt diam. Ut gravida rhoncus hendrerit. Integer eget eros et sem ultrices mollis. Aenean lacinia elit id nulla porta, ac sodales enim lacinia. Donec viverra risus nec neque dignissim, id consectetur nisi ornare. Nullam vel lorem in lorem faucibus viverra. Nulla congue malesuada sagittis. Proin vel malesuada nisl. Vestibulum at lectus id eros bibendum molestie quis sed dolor. Vestibulum interdum in diam quis laoreet.",
-        false));
+
     persistantController = PersistentTabController();
 
     stockScrollController.addListener(() {
@@ -57,18 +55,19 @@ class DashController extends GetxController {
         }
       }
     });
+    newsScrollController.addListener(() {
+      if (newsScrollController.position.pixels == newsScrollController.position.maxScrollExtent) {
+        if (newsNextUrl.isNotEmpty) {
+          getNewsList(true);
+        }
+      }
+    });
 
     searchController.addListener(() {
-      if (searchController.text.length > 1) {
+      if (searchController.text.isNotEmpty) {
         searchStocks();
       } else {
-        if (searchController.text.isNotEmpty) {
-          searchStocks();
-        } else {
-          if (stockList.length != mailList.length) {
-            stockList.value = mailList;
-          }
-        }
+        stockList.value = mailList;
       }
     });
   }
@@ -91,6 +90,14 @@ class DashController extends GetxController {
     try {
       pageCtrl.animateToPage(index, duration: const Duration(milliseconds: 350), curve: Curves.ease);
       currentIndex.value = index;
+      if(index==3)
+        {
+          if(newsList.isEmpty)
+            {
+              getNewsList(false);
+            }
+
+        }
     } catch (e) {
       e.printError();
     }
@@ -117,7 +124,8 @@ class DashController extends GetxController {
         Loader.hideLoading();
       }
       Alert.log(runtimeType.toString(), "RESPONSE ${value.nextUrl?.split("cursor=").last}");
-      if (value.results?.isNotEmpty == true) {value.results?.forEach((element) {
+      if (value.results?.isNotEmpty == true) {
+        value.results?.forEach((element) {
           if (stockList.contains(element) == false) {
             stockList.add(element);
           }
@@ -135,7 +143,52 @@ class DashController extends GetxController {
       } else {
         Loader.hideLoading();
       }
-      showSheet(context: Get.context as BuildContext, title: "Error", message: error.errorMessage, primaryBtnText: "Okay", onPrimaryBtnClick: () => Get.back());
+      showSheet(
+          context: Get.context as BuildContext,
+          title: "Error",
+          message: error.errorMessage,
+          primaryBtnText: "Okay",
+          onPrimaryBtnClick: () => Get.back());
+    });
+  }
+
+void getNewsList(bool isLoadMore)
+  async {
+    if (isLoadMore) {
+      newsMoreLoading.value = true;
+    } else {
+      // Loader.showLoading();
+    }
+    var query = <String, dynamic>{};
+    if (isLoadMore) {
+      query["cursor"] = newsNextUrl;
+    }
+
+    var repo = await DashRepository().getNews(query);
+    repo.when(success: (value) {
+      if (isLoadMore) {
+        newsMoreLoading.value = false;
+      } else {
+        Loader.hideLoading();
+      }
+      Alert.log(runtimeType.toString(), "RESPONSE ${value.nextUrl?.split("cursor=").last}");
+      if (value.results?.isNotEmpty == true) {
+        value.results?.forEach((element) {
+          if (newsList.contains(element) == false) {
+            newsList.add(element);
+          }
+        });
+        Alert.log(runtimeType.toString(), "news LIST SIZE ${newsList.length}");
+      }
+
+      newsNextUrl = value.nextUrl?.split("cursor=").last ?? "";
+      Alert.log(runtimeType.toString(), "news NEXT URL $newsNextUrl");
+    }, error: (error) {
+      if (isLoadMore) {
+        newsMoreLoading.value = false;
+      } else {
+        Loader.hideLoading();
+      }
     });
   }
 
@@ -156,9 +209,7 @@ class DashController extends GetxController {
             channel?.sink.add(jsonEncode(data));
           }
         default:
-          {
-
-          }
+          {}
       }
     });
   }

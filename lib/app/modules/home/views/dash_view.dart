@@ -73,11 +73,11 @@ class DashboardView extends GetView<DashController> {
       ),
       child: NavigationBar(
         destinations: <NavigationDestination>[
-          navItem(Assets.imagesIcSearch.path, "Home"),
+          navItem(Assets.imagesHome.path, "Home"),
           navItem(Assets.imagesMarket48.path, "Market"),
-          navItem(Assets.imagesIcMail.path, "Chat"),
+          navItem(Assets.imagesChat.path, "Chat"),
           navItem(Assets.imagesNews.path, "News"),
-          navItem(Assets.imagesIcForward.path, "More"),
+          navItem(Assets.imagesMenu.path, "More"),
         ],
         selectedIndex: controller.currentIndex.value,
         onDestinationSelected: (index) {

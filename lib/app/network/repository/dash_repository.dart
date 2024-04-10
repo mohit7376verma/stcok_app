@@ -10,8 +10,8 @@ import '../utils/network_result.dart';
 
 class DashRepository extends BaseRepository{
   Future<NetworkResult<NewsResponse>> getNews(
-      String email, String password) async {
-    return get<NewsResponse>(ApiEndPoints.news, fromJson: NewsResponse.fromJson);
+     Map<String,dynamic> query) async {
+    return polygonGet<NewsResponse>(ApiEndPoints.news, fromJson: NewsResponse.fromJson,query: query);
   }
 
   Future<NetworkResult<StockListResponse>> getStockList(Map<String,dynamic> query) async {

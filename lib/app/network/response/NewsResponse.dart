@@ -75,6 +75,7 @@ class Results {
   String? ampUrl;
   String? imageUrl;
   String? description;
+  bool isSelected=false;
   List<String>? keywords;
 
   Map<String, dynamic> toJson() {
